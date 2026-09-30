@@ -1,13 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-import type {PayloadAction} from '@reduxjs/toolkit' // eslint-disable-line
+// import type {PayloadAction} from '@reduxjs/toolkit' // eslint-disable-line
 import type { LefterTabType } from '@type'
 
 interface LefterState {
+  isShow: boolean
   tabType: LefterTabType
 }
 
 const initialState: LefterState = {
+  isShow: true,
   tabType: null
 }
 
@@ -23,6 +25,13 @@ export const lefterSlice = createSlice({
     },
     setLefterTabPitchRecord: state => {
       state.tabType = "PitchRecord"
+    },
+
+    showOffLefter: state => {
+      state.isShow = false
+    },
+    showOnLefter: state => {
+      state.isShow = true
     }
   }
 })

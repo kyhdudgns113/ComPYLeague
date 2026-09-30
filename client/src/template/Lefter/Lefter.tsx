@@ -3,6 +3,8 @@ import {useCallback} from 'react'
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
+import {PitchingRecordRow, SettingRow} from './rows'
+
 import './Lefter.scss'
 
 type LefterProps = DivCommonProps
@@ -10,7 +12,8 @@ type LefterProps = DivCommonProps
 export const Lefter: FC<LefterProps> = ({...props}) => {
   return (
     <div className={`Lefter`} {...props}>
-      Lefter.tsx
+      <PitchingRecordRow />
+      <SettingRow />
     </div>
   )
 }

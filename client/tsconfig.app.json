@@ -26,6 +26,7 @@
       "@styles/*": [ "./src/base/styles/*" ],
 
       "@prop": [ "./src/base/types/props" ],
+      "@redux": [ "./src/manager/redux" ],
       "@secret": [ "./src/base/secret" ],
       "@type": [ "./src/base/types/types" ]
     }
