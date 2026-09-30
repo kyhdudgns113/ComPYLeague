@@ -9,8 +9,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<P.RedirectHomePage />} />
+
       <Route path="/main/*" element={<Template />}>
         <Route index element={<P.IntroPage />} />
+        <Route path="pitchRecord" element={<P.PitchRecordPage />} />
+        <Route path="setting" element={<P.SettingPage />} />
       </Route>
     </Routes>
   )
