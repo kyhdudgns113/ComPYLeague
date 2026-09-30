@@ -1,2 +1,2 @@
-export * from './PitchingRecordRow'
+export * from './PitchRecordRow'
 export * from './SettingRow'

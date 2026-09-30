@@ -3,7 +3,7 @@ import {useCallback} from 'react'
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
-import {PitchingRecordRow, SettingRow} from './rows'
+import {PitchRecordRow, SettingRow} from './rows'
 
 import './Lefter.scss'
 
@@ -17,7 +17,7 @@ export const Lefter: FC<LefterProps> = ({...props}) => {
   return (
     <div className={`Lefter`} onClick={onClickLefter} {...props}>
       <SettingRow />
-      <PitchingRecordRow />
+      <PitchRecordRow />
     </div>
   )
 }

@@ -6,29 +6,30 @@ import {useSelectLefterType} from '@redux'
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
-import './SettingRow.scss'
+import './PitchRecordRow.scss'
 
-type SettingRowProps = DivCommonProps
+type PitchRecordRowProps = DivCommonProps
 
-export const SettingRow: FC<SettingRowProps> = ({...props}) => {
+export const PitchRecordRow: FC<PitchRecordRowProps> = ({...props}) => {
   const tabType = useSelectLefterType()
 
   const [isSelected, setIsSelected] = useState<boolean>(false)
 
   const navigate = useNavigate()
 
+  // 클릭 이벤트
   const onClickRow = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation()
 
-      navigate('/main/setting')
+      navigate('/main/pitchRecord')
     },
     [navigate]
   )
 
   // 자동갱신 : 현재 탭 선택여부 갱신
   useEffect(() => {
-    if (tabType === 'Setting') {
+    if (tabType === 'PitchRecord') {
       setIsSelected(true)
     } // ::
     else {
@@ -37,8 +38,8 @@ export const SettingRow: FC<SettingRowProps> = ({...props}) => {
   }, [tabType])
 
   return (
-    <div className={`SettingRow ${isSelected && '_bold'}`} onClick={onClickRow} {...props}>
-      SettingRow.tsx
+    <div className={`PitchRecordRow ${isSelected && '_bold'}`} onClick={onClickRow} {...props}>
+      PitchRecordRow.tsx
     </div>
   )
 }
