@@ -12,10 +12,11 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@styles': path.resolve(root, 'src/base/styles'),
+      '@context': path.resolve(root, 'src/manager/contexts'),
       '@prop': path.resolve(root, 'src/base/types/props'),
       '@redux': path.resolve(root, 'src/manager/redux'),
       '@secret': path.resolve(root, 'src/base/secret'),
+      '@styles': path.resolve(root, 'src/base/styles'),
       '@type': path.resolve(root, 'src/base/types/types')
     }
   },

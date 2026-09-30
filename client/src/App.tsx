@@ -8,7 +8,8 @@ import './base/styles/App.css'
 function App() {
   return (
     <Routes>
-      <Route path="/*" element={<Template />}>
+      <Route path="/" element={<P.RedirectHomePage />} />
+      <Route path="/main/*" element={<Template />}>
         <Route index element={<P.IntroPage />} />
       </Route>
     </Routes>

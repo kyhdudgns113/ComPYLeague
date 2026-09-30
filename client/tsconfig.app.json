@@ -22,9 +22,11 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
 
+    /* Should copy in vite.config.ts*/
     "paths": {
       "@styles/*": [ "./src/base/styles/*" ],
 
+      "@context": [ "./src/manager/contexts" ],
       "@prop": [ "./src/base/types/props" ],
       "@redux": [ "./src/manager/redux" ],
       "@secret": [ "./src/base/secret" ],
