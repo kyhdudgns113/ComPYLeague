@@ -1,0 +1,18 @@
+@use '../base/styles/values.scss' as v;
+
+.Template {
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  min-width: calc(100vw - 16px);
+
+  width: 1904px;
+
+  .Body_Template {
+    display: flex;
+    flex-direction: row;
+  }
+}

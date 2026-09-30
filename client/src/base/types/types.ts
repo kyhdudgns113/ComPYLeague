@@ -1,0 +1,1 @@
+export type LefterTabType = "Setting" | "PitchRecord" | null
