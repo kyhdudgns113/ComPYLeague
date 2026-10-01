@@ -17,7 +17,8 @@ export default defineConfig({
       '@redux': path.resolve(root, 'src/manager/redux'),
       '@secret': path.resolve(root, 'src/base/secret'),
       '@styles': path.resolve(root, 'src/base/styles'),
-      '@type': path.resolve(root, 'src/base/types/types')
+      '@type': path.resolve(root, 'src/base/types/types'),
+      '@value': path.resolve(root, 'src/base/values')
     }
   },
   server: {

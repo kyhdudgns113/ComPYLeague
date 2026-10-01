@@ -23,9 +23,9 @@ export const Template: FC<TemplateProps> = ({...props}) => {
       <Header />
 
       {/* 2. 몸통 */}
-      <div className="Body_Template">
+      <div className="body_Template">
         <Lefter />
-        <div className="PageArea_Template">
+        <div className="pageArea_Template">
           <Outlet />
         </div>
       </div>

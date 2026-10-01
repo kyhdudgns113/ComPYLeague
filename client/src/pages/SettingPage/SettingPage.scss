@@ -1,0 +1,30 @@
+@use "../../base/styles/values.scss" as v;
+
+.Template {
+  .SettingPage {
+    align-items: center;
+    
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    width: 100%;
+
+    .teamRow_Page {
+      align-items: center;
+
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      height: fit-content;
+
+      justify-content: center;
+
+      margin-top: 32px;
+
+
+      width: fit-content;
+    }
+  }
+}

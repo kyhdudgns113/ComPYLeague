@@ -5,13 +5,14 @@
 
   display: flex;
   flex-direction: column;
+  height: 600px;
 
   min-height: 100vh;
   min-width: calc(100vw - 16px);
 
   width: 1904px;
 
-  .Body_Template {
+  .body_Template {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -23,9 +24,9 @@
 
     width: 100%;
 
-    .PageArea_Template {
+    .pageArea_Template {
       align-items: center;
-      background-color: #AAAAAA;
+      
       display: flex;
       flex-direction: column;
       justify-content: center;

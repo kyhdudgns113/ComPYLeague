@@ -30,7 +30,8 @@
       "@prop": [ "./src/base/types/props" ],
       "@redux": [ "./src/manager/redux" ],
       "@secret": [ "./src/base/secret" ],
-      "@type": [ "./src/base/types/types" ]
+      "@type": [ "./src/base/types/types" ],
+      "@value": [ "./src/base/values" ]
     }
   },
   "include": [ "src" ]
