@@ -25,3 +25,19 @@ export const TEAM_NAME = {
   [TEAM_NC]: 'NC',
   [TEAM_KIWOOM]: '키움'
 }
+
+export const TEAM_IDX_ARR = [
+  TEAM_KT,
+  TEAM_KIA,
+  TEAM_SAMSUNG,
+  TEAM_DOOSAN,
+  TEAM_SSG,
+  TEAM_LG,
+  TEAM_LOTTE,
+  TEAM_HANHWA,
+  TEAM_NC,
+  TEAM_KIWOOM
+]
+
+export const MY_TEAM_IDX = TEAM_KT
+export const MY_TEAM_NAME = TEAM_NAME[MY_TEAM_IDX]

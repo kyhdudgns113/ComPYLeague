@@ -14,6 +14,10 @@ function App() {
         <Route index element={<P.IntroPage />} />
         <Route path="pitchRecord" element={<P.PitchRecordPage />} />
         <Route path="setting" element={<P.SettingPage />} />
+        <Route path="setting/*">
+          <Route index element={<P.SettingPage />} />
+          <Route path=":teamIdx" element={<P.TeamPage />} />
+        </Route>
       </Route>
     </Routes>
   )
