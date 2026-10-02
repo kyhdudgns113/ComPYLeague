@@ -51,8 +51,8 @@ export const TeamPage: FC<TeamPageProps> = ({...props}) => {
       className={`TeamPage teamIdx_${teamIdx}`}
       {...props} // ::
     >
-      {teamIdx === V.MY_TEAM_IDX && <SP.MyTeamSubPage />}
-      {teamIdx !== null && teamIdx !== V.MY_TEAM_IDX && <SP.OtherTeamSubPage />}
+      {teamIdx === V.MY_TEAM_IDX && <SP.MyTeamSubPage teamIdx={teamIdx} />}
+      {teamIdx !== null && teamIdx !== V.MY_TEAM_IDX && <SP.OtherTeamSubPage teamIdx={teamIdx} />}
     </div>
   )
 }

@@ -1,0 +1,41 @@
+@use '../../../../../../base/styles/values.scss' as v;
+
+.Template {
+  .TeamPage {
+    .MyTeamSubPage {
+      .CloserPitcherPart {
+        border-color: #000000;
+        border-radius: 8px;
+        border-style: solid;
+        border-width: 2px;
+
+        height: 400px;
+
+        width: 240px;
+
+        .title_Part {
+
+          border-color: #000000;
+          border-style: solid;
+
+          border-bottom-width: 2px;
+          border-left-width: 0px;
+          border-right-width: 0px;
+          border-top-width: 0px;
+
+          font-size: 20px;
+          font-weight: 700;
+
+          height: fit-content;
+
+          padding-top: 6px;
+          padding-bottom: 6px;
+
+          text-align: center;
+          user-select: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

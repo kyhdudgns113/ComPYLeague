@@ -1,14 +1,25 @@
+import * as P from './parts'
+import * as V from '@value'
+
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
 import './MyTeamSubPage.scss'
 
-type MyTeamSubPageProps = DivCommonProps
+type MyTeamSubPageProps = DivCommonProps & {teamIdx: number}
 
-export const MyTeamSubPage: FC<MyTeamSubPageProps> = ({...props}) => {
+export const MyTeamSubPage: FC<MyTeamSubPageProps> = ({teamIdx, ...props}) => {
   return (
     <div className={`MyTeamSubPage`} {...props}>
-      MyTeamSubPage.tsx
+      {/* 1. 타이틀 */}
+      <p className="title_SubPage">{`우리팀(${V.MY_TEAM_NAME}) 라인업`}</p>
+
+      {/* 2. 몸통 행 */}
+      <div className="blocksRow_SubPage">
+        <P.StartPitcherPart />
+        <P.ReliefPitcherPart />
+        <P.CloserPitcherPart />
+      </div>
     </div>
   )
 }

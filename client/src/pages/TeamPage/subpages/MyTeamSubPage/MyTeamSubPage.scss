@@ -3,7 +3,42 @@
 .Template {
   .TeamPage {
     .MyTeamSubPage {
-      
+      align-items: center;
+
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      width: 100%;
+
+      .title_SubPage {
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: 700;
+
+        height: fit-content;
+
+        margin-top: 40px;
+
+        user-select: none;
+
+        width: fit-content;
+      }
+
+      .blocksRow_SubPage {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        gap: 60px;
+
+        height: fit-content;
+
+        justify-content: center;
+
+        margin-top: 60px;
+
+        width: fit-content;
+      }
     }
   }
 }
