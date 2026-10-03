@@ -1,23 +1,22 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import {NestFactory} from '@nestjs/core'
+import {AppModule} from './app.module'
 
 import * as S from '@secret'
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
-
+import {CorsOptions} from '@nestjs/common/interfaces/external/cors-options.interface'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule)
 
   // CORS 설정
   const corsOptions: CorsOptions = {
     origin: [S.CLIENT_IP_PORT],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true
+    credentials: true,
   }
 
   app.enableCors(corsOptions)
 
   // 서버 실행
-  await app.listen(S.SERVER_PORT);
+  await app.listen(S.SERVER_PORT)
 }
-bootstrap();
+bootstrap()

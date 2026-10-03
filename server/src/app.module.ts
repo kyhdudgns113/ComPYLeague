@@ -1,14 +1,14 @@
-import { Module } from '@nestjs/common'
+import {Module} from '@nestjs/common'
 
 import * as M from './modules'
 
 @Module({
-  imports: [ // ::
+  imports: [
+    // ::
     M.DatabaseModule,
-    M.SettingModule
+    M.SettingModule,
   ],
   controllers: [],
   providers: [],
 })
-
 export class AppModule {}

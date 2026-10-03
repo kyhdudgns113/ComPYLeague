@@ -6,6 +6,6 @@ import {CopyMeService} from './CopyMe.service'
   imports: [],
   controllers: [CopyMeController],
   providers: [CopyMeService],
-  exports: [CopyMeService]
+  exports: [CopyMeService],
 })
 export class CopyMeModule {}

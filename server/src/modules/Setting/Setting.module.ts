@@ -6,6 +6,6 @@ import {SettingService} from './Setting.service'
   imports: [],
   controllers: [SettingController],
   providers: [SettingService],
-  exports: [SettingService]
+  exports: [SettingService],
 })
 export class SettingModule {}
