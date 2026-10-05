@@ -19,7 +19,8 @@
 
     "paths": {
       "@commonType": [ "./src/base/types/CommonTypes" ],
-      "@dataType": [ "./src/base/types/DataTypes" ],
+      "@dtoType": [ "./src/base/types/DtoTypes" ],
+      "@objectTye": [ "./src/base/types/ObjectTypes" ],
       "@secret": [ "./src/base/secret" ],
       "@value": [ "./src/base/values" ]
     }
