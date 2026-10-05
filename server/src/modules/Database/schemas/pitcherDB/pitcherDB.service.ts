@@ -5,17 +5,9 @@ import {Model} from 'mongoose'
 
 @Injectable()
 export class PitcherDBService {
-  constructor(@InjectModel(PitcherInfo.name) private ___copyModel: Model<PitcherInfo>) {}
+  constructor(@InjectModel(PitcherInfo.name) private pitcherModel: Model<PitcherInfo>) {}
 
-  async copyMePost(copyData: any) {
-    return 'CopyMe'
-  }
-
-  async copyMeGet() {
-    return 'CopyMe'
-  }
-
-  async copyMeEtc() {
-    return 'CopyMe'
+  async createPitcherInfo() {
+    return 'yes'
   }
 }

@@ -9,7 +9,6 @@
     "target": "ES2023",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -19,7 +18,10 @@
     "noFallthroughCasesInSwitch": false,
 
     "paths": {
-      "@secret": [ "./src/base/secret" ]
+      "@commonType": [ "./src/base/types/CommonTypes" ],
+      "@dataType": [ "./src/base/types/DataTypes" ],
+      "@secret": [ "./src/base/secret" ],
+      "@value": [ "./src/base/values" ]
     }
   }
 }

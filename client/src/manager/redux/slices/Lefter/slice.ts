@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 // import type {PayloadAction} from '@reduxjs/toolkit' // eslint-disable-line
-import type { LefterTabType } from '@type'
+import type { LefterTabType } from '@localType'
 
 interface LefterState {
   isShow: boolean

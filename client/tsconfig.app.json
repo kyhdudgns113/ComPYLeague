@@ -26,7 +26,10 @@
     "paths": {
       "@styles/*": [ "./src/base/styles/*" ],
 
+      "@commonType": [ "./src/base/types/CommonTypes" ],
       "@context": [ "./src/manager/contexts" ],
+      "@localType": [ "./src/base/types/LocalTypes" ],
+
       "@prop": [ "./src/base/types/props" ],
       "@redux": [ "./src/manager/redux" ],
       "@secret": [ "./src/base/secret" ],
