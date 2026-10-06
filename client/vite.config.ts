@@ -12,12 +12,17 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      '@commonType': path.resolve(root, 'src/base/types/CommonTypes'),
       '@context': path.resolve(root, 'src/manager/contexts'),
+      '@fetch': path.resolve(root, 'src/base/fetch'),
+      "@localType": path.resolve(root, 'src/base/types/LocalTypes'),
+
+      '@objectType': path.resolve(root, 'src/base/types/ObjectTypes'),
       '@prop': path.resolve(root, 'src/base/types/props'),
       '@redux': path.resolve(root, 'src/manager/redux'),
       '@secret': path.resolve(root, 'src/base/secret'),
       '@styles': path.resolve(root, 'src/base/styles'),
-      '@type': path.resolve(root, 'src/base/types/types'),
+      '@util': path.resolve(root, 'src/base/utils'),
       '@value': path.resolve(root, 'src/base/values')
     }
   },

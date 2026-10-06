@@ -28,12 +28,14 @@
 
       "@commonType": [ "./src/base/types/CommonTypes" ],
       "@context": [ "./src/manager/contexts" ],
+      "@fetch": [ "./src/base/fetch" ],
       "@localType": [ "./src/base/types/LocalTypes" ],
+      "@objectType": [ "./src/base/types/ObjectTypes" ],
 
       "@prop": [ "./src/base/types/props" ],
       "@redux": [ "./src/manager/redux" ],
       "@secret": [ "./src/base/secret" ],
-      "@type": [ "./src/base/types/types" ],
+      "@util": [ "./src/base/utils" ],
       "@value": [ "./src/base/values" ]
     }
   },
