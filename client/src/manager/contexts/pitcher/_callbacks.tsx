@@ -28,11 +28,11 @@ export const PitcherCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
       .then(res => {
         const {ok, body, statusCode, gkdErrMsg, message} = res
         if (ok) {
-          const {pitcherArr} = body
-          if (!pitcherArr) {
+          const {CPArr, RPArr, SPArr} = body
+          if (!CPArr || !RPArr || !SPArr) {
             return {isSuccess: false, errMsg: 'pitcherArr is falsy'} as LT.APIReturnType
           }
-          return {isSuccess: true, pitcherArr} as LT.APIReturnType
+          return {isSuccess: true, CPArr, RPArr, SPArr} as LT.APIReturnType
         } // ::
         else {
           U.alertErrMsg(url, statusCode, gkdErrMsg, message)

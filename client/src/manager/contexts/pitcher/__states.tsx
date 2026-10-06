@@ -7,21 +7,29 @@ import * as OT from '@objectType'
 
 // prettier-ignore
 type ContextType = {
-  pitcherArr: OT.PitcherType[], setPitcherArr: LT.Setter<OT.PitcherType[]>
+  CPArr: OT.PitcherType[], setCPArr: LT.Setter<OT.PitcherType[]>,
+  RPArr: OT.PitcherType[], setRPArr: LT.Setter<OT.PitcherType[]>,
+  SPArr: OT.PitcherType[], setSPArr: LT.Setter<OT.PitcherType[]>,
 }
 // prettier-ignore
 export const PitcherStatesContext = createContext<ContextType>({
-  pitcherArr: [], setPitcherArr: () => {}
+  CPArr: [], setCPArr: () => {},
+  RPArr: [], setRPArr: () => {},
+  SPArr: [], setSPArr: () => {},
 })
 
 export const usePitcherStatesContext = () => useContext(PitcherStatesContext)
 
 export const PitcherStatesProvider: FC<PropsWithChildren> = ({children}) => {
-  const [pitcherArr, setPitcherArr] = useState<OT.PitcherType[]>([])
+  const [CPArr, setCPArr] = useState<OT.PitcherType[]>([])
+  const [RPArr, setRPArr] = useState<OT.PitcherType[]>([])
+  const [SPArr, setSPArr] = useState<OT.PitcherType[]>([])
 
   // prettier-ignore
   const value: ContextType = {
-    pitcherArr, setPitcherArr
+    CPArr, setCPArr,
+    RPArr, setRPArr,
+    SPArr, setSPArr
   }
 
   return <PitcherStatesContext.Provider value={value}>{children}</PitcherStatesContext.Provider>

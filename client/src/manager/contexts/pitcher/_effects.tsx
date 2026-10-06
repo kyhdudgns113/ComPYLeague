@@ -17,7 +17,7 @@ export const PitcherEffectsContext = createContext<ContextType>({})
 export const usePitcherEffectsContext = () => useContext(PitcherEffectsContext)
 
 export const PitcherEffectsProvider: FC<PropsWithChildren> = ({children}) => {
-  const {setPitcherArr} = usePitcherStatesContext()
+  const {setCPArr, setRPArr, setSPArr} = usePitcherStatesContext()
   const {getPitcherArr} = usePitcherCallbacksContext()
 
   // 자동 갱신: pitcherArr
@@ -25,7 +25,9 @@ export const PitcherEffectsProvider: FC<PropsWithChildren> = ({children}) => {
     getPitcherArr(MY_TEAM_NAME).then(res => {
       const {isSuccess} = res
       if (isSuccess) {
-        setPitcherArr(res.pitcherArr)
+        setCPArr(res.CPArr)
+        setRPArr(res.RPArr)
+        setSPArr(res.SPArr)
       } // ::
       else {
         U.alertErrors('PitcherEffect', res)

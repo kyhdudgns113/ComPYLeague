@@ -11,7 +11,6 @@ export class SettingController {
   @Get('/readTeamPitcherArr/:teamName')
   async readTeamPitcherArr(@Param('teamName') teamName: CT.Type_Team) {
     const {ok, body, gkdErrMsg, statusCode} = await this.settingService.readTeamPitcherArr(teamName)
-    console.log(`statusCode: ${statusCode}`)
     return {ok, body, gkdErrMsg, statusCode}
 
   }
