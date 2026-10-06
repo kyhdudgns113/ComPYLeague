@@ -60,7 +60,7 @@ export class PitcherInfo extends Document {
 
 
 @Schema()
-export class PitcherArr {
+export class PitcherArr extends Document {
   
   // 투수 ObjectID 의 배열
   @Prop({type: [String], default: []})

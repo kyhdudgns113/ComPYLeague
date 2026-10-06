@@ -12,4 +12,4 @@ import {PitcherDBService} from './pitcherDB.service'
   providers: [PitcherDBService],
   exports: [PitcherDBService],
 })
-export class ___CopyMeModule {}
+export class PitcherDBModule {}

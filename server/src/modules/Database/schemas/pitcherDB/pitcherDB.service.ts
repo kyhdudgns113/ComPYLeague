@@ -14,7 +14,6 @@ export class PitcherDBService {
     @InjectModel(PitcherArr.name) private pitcherArrModel: Model<PitcherArr>,
     @InjectModel(PitcherInfo.name) private pitcherInfoModel: Model<PitcherInfo>,
     @InjectModel(PitcherRecord.name) private pitcherRecordModel: Model<PitcherRecord>
-
   ) {}
 
   async createPitcherInfo(where: string, data: DTO.DTO_CreatePitcher) {

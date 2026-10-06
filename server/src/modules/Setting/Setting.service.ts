@@ -1,13 +1,19 @@
 import {Injectable} from '@nestjs/common'
 
+import * as CT from '@commonType'
+import { PitcherDBService } from '../Database'
+
 @Injectable()
 export class SettingService {
-  constructor() {}
+  constructor(private readonly pitcherDBService: PitcherDBService) {}
 
-  async copyMeGet(testArg: any) {
+
+  async readTeamPitcherArr(teamName: CT.Type_Team) {
+    const where = '/setting/readTeamPitcherArr'
     try {
-      return {ok: true, body: {}, errObj: {}}
-      // ::
+      const {pitcherArr} = await this.pitcherDBService.readPitcherInfoArr(where, teamName)
+      return {ok: true, body: {pitcherArr}, errObj: {}}
+
     } catch (errObj) {
       // ::
       return {ok: false, body: {}, errObj}
