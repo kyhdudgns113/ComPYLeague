@@ -13,8 +13,10 @@ export class SettingService {
   async readTeamPitcherArr(teamName: CT.Type_Team) {
     const where = '/setting/readTeamPitcherArr'
     try {
-      const {pitcherArr} = await this.pitcherDBService.readPitcherInfoArr(where, teamName)
-      return {ok: true, body: {pitcherArr}, gkdErrMsg: '', statusCode: 200}
+      const {pitcherArr: SPArr} = await this.pitcherDBService.readPitcherInfoArr(where, "선발", teamName)
+      const {pitcherArr: RPArr} = await this.pitcherDBService.readPitcherInfoArr(where, "중계", teamName)
+      const {pitcherArr: CPArr} = await this.pitcherDBService.readPitcherInfoArr(where, "마무리", teamName)
+      return {ok: true, body: {SPArr, RPArr, CPArr}, gkdErrMsg: '', statusCode: 200}
 
     } catch (errObj) {
       // ::
