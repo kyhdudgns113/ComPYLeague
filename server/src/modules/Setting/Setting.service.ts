@@ -1,7 +1,9 @@
 import {Injectable} from '@nestjs/common'
 
-import * as CT from '@commonType'
 import { PitcherDBService } from '../Database'
+
+import * as CT from '@commonType'
+import * as U from '@util'
 
 @Injectable()
 export class SettingService {
@@ -12,11 +14,11 @@ export class SettingService {
     const where = '/setting/readTeamPitcherArr'
     try {
       const {pitcherArr} = await this.pitcherDBService.readPitcherInfoArr(where, teamName)
-      return {ok: true, body: {pitcherArr}, errObj: {}}
+      return {ok: true, body: {pitcherArr}, gkdErrMsg: '', statusCode: 200}
 
     } catch (errObj) {
       // ::
-      return {ok: false, body: {}, errObj}
+      return U.getFailResponse(errObj)
     }
   }
 }

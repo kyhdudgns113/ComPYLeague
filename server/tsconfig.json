@@ -22,6 +22,7 @@
       "@dtoType": [ "./src/base/types/DtoTypes" ],
       "@objectTye": [ "./src/base/types/ObjectTypes" ],
       "@secret": [ "./src/base/secret" ],
+      "@util": [ "./src/base/utils" ],
       "@value": [ "./src/base/values" ]
     }
   }

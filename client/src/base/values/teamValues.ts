@@ -1,3 +1,5 @@
+import * as CT from '@commonType'
+
 
 // 정렬기준 : KT 가 맨 앞, 나머지는 스탯티즈 순
 export const [
@@ -13,7 +15,7 @@ export const [
   TEAM_KIWOOM
 ] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-export const TEAM_NAME = {
+export const TEAM_NAME: {[key: string]: CT.Type_Team} = {
   [TEAM_KT]: 'KT',
   [TEAM_KIA]: '기아',
   [TEAM_SAMSUNG]: '삼성',
@@ -40,4 +42,4 @@ export const TEAM_IDX_ARR = [
 ]
 
 export const MY_TEAM_IDX = TEAM_KT
-export const MY_TEAM_NAME = TEAM_NAME[MY_TEAM_IDX]
+export const MY_TEAM_NAME: CT.Type_Team = TEAM_NAME[MY_TEAM_IDX]

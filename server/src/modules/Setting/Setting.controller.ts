@@ -3,15 +3,16 @@ import {SettingService} from './Setting.service'
 
 import * as CT from '@commonType'
 
-@Controller('setting')
+@Controller('/setting')
 export class SettingController {
   constructor(private readonly settingService: SettingService) {}
 
 
   @Get('/readTeamPitcherArr/:teamName')
   async readTeamPitcherArr(@Param('teamName') teamName: CT.Type_Team) {
-    const {ok, body, errObj} = await this.settingService.readTeamPitcherArr(teamName)
-    return {ok, body, errObj}
+    const {ok, body, gkdErrMsg, statusCode} = await this.settingService.readTeamPitcherArr(teamName)
+    console.log(`statusCode: ${statusCode}`)
+    return {ok, body, gkdErrMsg, statusCode}
 
   }
 }
