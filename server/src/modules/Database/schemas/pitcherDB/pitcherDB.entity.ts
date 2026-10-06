@@ -42,6 +42,11 @@ export class PitcherRecord extends Document {
   plateAppearance = 0
 }
 
+/**
+ * class PitcherInfo
+ * 
+ * - 투수 1명의 개인 정보
+ */
 @Schema()
 export class PitcherInfo extends Document {
   /** Object Id is in extended class Document */
@@ -53,4 +58,19 @@ export class PitcherInfo extends Document {
   teamName: CT.Type_Team = V.MY_TEAM_NAME
 }
 
+
+@Schema()
+export class PitcherArr {
+  
+  // 투수 ObjectID 의 배열
+  @Prop({type: [String], default: []})
+  pitcherOIdArr: string[] = []
+  
+  // 팀 이름
+  @Prop({type: String, required: true, unique: true})
+  teamName!: CT.Type_Team
+}
+
+export const PitcherRecordSchema = SchemaFactory.createForClass(PitcherRecord)
 export const PitcherInfoSchema = SchemaFactory.createForClass(PitcherInfo)
+export const PitcherArrSchema = SchemaFactory.createForClass(PitcherArr)
