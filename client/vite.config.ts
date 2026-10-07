@@ -13,6 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@commonType': path.resolve(root, 'src/base/types/CommonTypes'),
+      '@component': path.resolve(root, 'src/base/components'),
       '@context': path.resolve(root, 'src/manager/contexts'),
       '@fetch': path.resolve(root, 'src/base/fetch'),
       "@localType": path.resolve(root, 'src/base/types/LocalTypes'),

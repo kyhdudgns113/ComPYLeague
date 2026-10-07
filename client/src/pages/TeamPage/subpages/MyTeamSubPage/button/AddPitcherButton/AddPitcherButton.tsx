@@ -1,11 +1,15 @@
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
-import './CopyMe.scss'
+import * as CT from '@commonType'
 
-type AddPitcherButtonProps = DivCommonProps
+import './AddPitcherButton.scss'
 
-export const AddPitcherButton: FC<AddPitcherButtonProps> = ({...props}) => {
+type AddPitcherButtonProps = DivCommonProps & {
+  pitcherType: CT.Type_Pitcher
+}
+
+export const AddPitcherButton: FC<AddPitcherButtonProps> = ({pitcherType, ...props}) => {
   return (
     <div className={`AddPitcherButton`} {...props}>
       CopyMe.tsx

@@ -1,6 +1,7 @@
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
+import * as BT from '../../button'
 import * as CT from '@commonType'
 
 import './PitcherListPart.scss'
@@ -18,6 +19,7 @@ export const PitcherListPart: FC<PitcherListPartProps> = ({pitcherType, ...props
       {/* 2. 투수 목록 */}
 
       {/* 3. 추가 버튼 */}
+      <BT.AddPitcherButton pitcherType={pitcherType} />
     </div>
   )
 }
