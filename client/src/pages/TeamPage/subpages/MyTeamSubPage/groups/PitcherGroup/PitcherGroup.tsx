@@ -12,7 +12,7 @@ type PitcherGroupProps = DivCommonProps & {
 export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, ...props}) => {
   return (
     <div className={`PitcherGroup`} {...props}>
-      PitcherGroup.tsx
+      {pitcher.name}
     </div>
   )
 }

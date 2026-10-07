@@ -67,7 +67,7 @@ export class PitcherArr extends Document {
   
   // 배열에 있는 투수들 타입(선발, 중계, 마무리)
   @Prop({type: String, required: true})
-  arrType!: CT.Type_Pitcher
+  pitcherType!: CT.Type_Pitcher
   
   // 투수 ObjectID 의 배열
   @Prop({type: [String], default: []})

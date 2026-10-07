@@ -36,7 +36,7 @@ export class PitcherDBService {
       await this.pitcherArrModel.findOneAndUpdate(
         {pitcherType, teamName}, 
         {$push: {pitcherOIdArr: pitcherOId}},
-        {new: true}
+        {upsert: true}
       )
 
       // 4. 리턴

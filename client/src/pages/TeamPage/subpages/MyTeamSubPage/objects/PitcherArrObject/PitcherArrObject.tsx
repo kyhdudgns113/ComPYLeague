@@ -43,6 +43,7 @@ export const PitcherArrObject: FC<PitcherArrObjectProps> = ({pitcherType, ...pro
 
   return (
     <div className={`PitcherArrObject`} {...props}>
+      <p>{`배열 길이 : ${pitcherArr.length}`}</p>
       {pitcherArr.map((pitcher, pitcherIdx) => {
         return <G.PitcherGroup key={pitcherIdx} pitcher={pitcher} />
       })}
