@@ -30,6 +30,8 @@
       "@component": [ "./src/base/components" ],
       "@context": [ "./src/manager/contexts" ],
       "@fetch": [ "./src/base/fetch" ],
+
+      "@httpType": [ "./src/base/types/HTTPTypes" ],
       "@localType": [ "./src/base/types/LocalTypes" ],
       "@objectType": [ "./src/base/types/ObjectTypes" ],
 

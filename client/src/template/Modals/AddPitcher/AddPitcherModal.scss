@@ -5,10 +5,9 @@
 
     height: fit-content;
 
-    min-height: 400px;
-    min-width: 400px;
+    padding: 16px 24px 24px 16px;
 
-    width: fit-content;
+    width: 300px;
 
     .title_Modal {
       cursor: default;
@@ -91,6 +90,7 @@
         }
 
         &:hover {
+          background-color: #D0D0D0;
           font-weight: 700;
         }
       }

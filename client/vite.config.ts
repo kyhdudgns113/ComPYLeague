@@ -15,7 +15,9 @@ export default defineConfig({
       '@commonType': path.resolve(root, 'src/base/types/CommonTypes'),
       '@component': path.resolve(root, 'src/base/components'),
       '@context': path.resolve(root, 'src/manager/contexts'),
+
       '@fetch': path.resolve(root, 'src/base/fetch'),
+      '@httpType': path.resolve(root, 'src/base/types/HTTPTypes'),
       "@localType": path.resolve(root, 'src/base/types/LocalTypes'),
 
       '@objectType': path.resolve(root, 'src/base/types/ObjectTypes'),
