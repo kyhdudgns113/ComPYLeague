@@ -3,7 +3,29 @@
 .TeamPage {
   .MyTeamSubPage {
     .PitcherGroup {
-      
+      border-color: #c0c0c0;
+      border-style: solid;
+      border-bottom-width: 1px;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      border-top-width: 0px;
+
+      cursor: default;
+
+      padding-top: 4px;
+      padding-bottom: 4px;
+
+      text-align: center;
+
+      width: 100%;
+
+      &:first-child {
+        border-top-width: 1px;
+      }
+
+      &:hover {
+        background-color: #e8e8e8;
+      }
     }
   }
 }
