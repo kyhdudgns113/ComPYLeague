@@ -2,6 +2,98 @@
 
 .Template {
   .AddPitcherModal {
-    
+
+    height: fit-content;
+
+    min-height: 400px;
+    min-width: 400px;
+
+    width: fit-content;
+
+    .title_Modal {
+      cursor: default;
+
+      font-size: 24px;
+      font-weight: 700;
+
+      height: fit-content;
+
+      margin-bottom: 32px;
+
+      padding: 8px;
+
+      text-align: center;
+      user-select: none;
+
+      width: 100%;
+    }
+
+    .inputRow_Modal {
+      display: flex;
+      flex-direction: row;
+
+      width: fit-content;
+
+      p {
+        align-items: center;
+        display: flex;
+        font-size: 18px;
+        font-weight: 700;
+
+        justify-content: center;
+        user-select: none;
+        width: 60px;
+      }
+
+      input {
+        font-size: 18px;
+        padding: 4px 8px 4px 8px;
+        transition: box-shadow 0.25s ease;
+        width: 160px;
+
+        &:focus {
+          box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+
+    .buttonRow_Modal {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+
+      height: fit-content;
+      justify-content: center;
+
+      margin-top: 32px;
+
+      width: 100%;
+
+      button {
+        // border-color: #000000; 왜 이거대로 안되지?
+        border-width: 4px;
+
+        cursor: pointer;
+        font-size: 20px;
+        height: fit-content;
+
+        padding: 4px 8px 4px 8px;
+
+        transition: border-color 0.1s ease;
+        transition: scale 0.1s ease;
+
+        user-select: none;
+        width: 80px;
+
+        &:active {
+          scale: 95%;
+        }
+
+        &:hover {
+          font-weight: 700;
+        }
+      }
+    }
   }
 }
