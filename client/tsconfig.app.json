@@ -27,7 +27,7 @@
       "@styles/*": [ "./src/base/styles/*" ],
 
       "@commonType": [ "./src/base/types/CommonTypes" ],
-      "@component": [ "./src/base/component" ],
+      "@component": [ "./src/base/components" ],
       "@context": [ "./src/manager/contexts" ],
       "@fetch": [ "./src/base/fetch" ],
       "@localType": [ "./src/base/types/LocalTypes" ],

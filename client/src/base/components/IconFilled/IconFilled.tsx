@@ -1,6 +1,8 @@
 import type {FC} from 'react'
 import type {SpanCommonProps} from '@prop'
 
+import './IconFilled.scss'
+
 export type IconFilledProps = SpanCommonProps & {
   iconName: string
 }
