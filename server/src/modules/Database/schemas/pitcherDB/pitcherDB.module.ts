@@ -4,10 +4,11 @@ import {PitcherArr, PitcherArrSchema, PitcherInfo, PitcherInfoSchema, PitcherRec
 import {PitcherDBService} from './pitcherDB.service'
 
 @Module({
-  imports: [ // ::
+  imports: [
+    // ::
     MongooseModule.forFeature([{name: PitcherArr.name, schema: PitcherArrSchema}]),
     MongooseModule.forFeature([{name: PitcherInfo.name, schema: PitcherInfoSchema}]),
-    MongooseModule.forFeature([{name: PitcherRecord.name, schema: PitcherRecordSchema}])
+    MongooseModule.forFeature([{name: PitcherRecord.name, schema: PitcherRecordSchema}]),
   ],
   providers: [PitcherDBService],
   exports: [PitcherDBService],

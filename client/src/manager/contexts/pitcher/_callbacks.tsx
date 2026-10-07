@@ -15,7 +15,7 @@ type ContextType = {
 
   addPitcher: (name: string, pitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 
-  movePitcherInArr: (movePitcher: OT.PitcherType, targetTeamName: CT.Type_Team, targetIdx: number) => Promise<LT.APIReturnType>
+  movePitcherInArr: (movePitcher: OT.PitcherType, targetIdx: number, targetPitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 }
 // prettier-ignore
 export const PitcherCallbacksContext = createContext<ContextType>({
@@ -89,38 +89,43 @@ export const PitcherCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
 
   // PUT AREA:
 
-  const movePitcherInArr = useCallback(async (movePitcher: OT.PitcherType, targetTeamName: CT.Type_Team, targetIdx: number) => {
-    const url = `/setting/movePitcherInArr`
-    const data: HTTP.HTTP_MovePitcherInArr = {
-      pitcherOId: movePitcher.pitcherOId,
-      pitcherTeamName: movePitcher.teamName,
+  const movePitcherInArr = useCallback(
+    async (movePitcher: OT.PitcherType, targetIdx: number, targetPitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => {
+      const url = `/setting/movePitcherInArr`
+      const data: HTTP.HTTP_MovePitcherInArr = {
+        pitcherOId: movePitcher.pitcherOId,
+        pitcherType: movePitcher.pitcherType,
 
-      targetIdx,
-      targetTeamName: targetTeamName,
-    }
-    return F.put(url, data, null)
-      .then(res => res.json())
-      .then(res => {
-        const {ok, body, statusCode, gkdErrMsg, message} = res
+        targetIdx,
+        targetPitcherType,
 
-        if (ok) {
-          const {CPArr, RPArr, SPArr} = body
-          if (!CPArr || !RPArr || !SPArr) {
-            return {isSuccess: false, errMsg: `Some arr is falsy. CP:${CPArr}, RP: ${RPArr}, SP: ${SPArr}`} as LT.APIReturnType
+        teamName,
+      }
+      return F.put(url, data, null)
+        .then(res => res.json())
+        .then(res => {
+          const {ok, body, statusCode, gkdErrMsg, message} = res
+
+          if (ok) {
+            const {CPArr, RPArr, SPArr} = body
+            if (!CPArr || !RPArr || !SPArr) {
+              return {isSuccess: false, errMsg: `Some arr is falsy. CP:${CPArr}, RP: ${RPArr}, SP: ${SPArr}`} as LT.APIReturnType
+            }
+            return {isSuccess: true, CPArr, RPArr, SPArr} as LT.APIReturnType
+          } // ::
+          else {
+            U.alertErrMsg(url, statusCode, gkdErrMsg, message)
+            return {isSuccess: false} as LT.APIReturnType
           }
-          return {isSuccess: true, CPArr, RPArr, SPArr} as LT.APIReturnType
-        } // ::
-        else {
-          U.alertErrMsg(url, statusCode, gkdErrMsg, message)
+        })
+        .catch(errObj => {
+          U.alertErrors(url, errObj)
           return {isSuccess: false} as LT.APIReturnType
-        }
-      })
-      .catch(errObj => {
-        U.alertErrors(url, errObj)
-        return {isSuccess: false} as LT.APIReturnType
-      })
-    //
-  }, [])
+        })
+      //
+    },
+    []
+  )
 
   // prettier-ignore
   const value: ContextType = {

@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Headers, Param, Post} from '@nestjs/common'
+import {Body, Controller, Get, Headers, Param, Post, Put} from '@nestjs/common'
 import {SettingService} from './Setting.service'
 
 import * as CT from '@commonType'
@@ -19,6 +19,13 @@ export class SettingController {
   @Post(`/addPitcher`)
   async addPitcher(@Body() data: HTTP.HTTP_AddPitcher) {
     const {ok, body, gkdErrMsg, statusCode} = await this.settingService.addPitcher(data)
-    return {ok, body, gkdErrMsg, statusCode} 
+    return {ok, body, gkdErrMsg, statusCode}
+  }
+
+  // PUT AREA:
+  @Put('movePitcherInArr')
+  async movePitcherInArr(@Body() data: HTTP.HTTP_MovePitcherInArr) {
+    const {ok, body, gkdErrMsg, statusCode} = await this.settingService.movePitcherInArr(data)
+    return {ok, body, gkdErrMsg, statusCode}
   }
 }

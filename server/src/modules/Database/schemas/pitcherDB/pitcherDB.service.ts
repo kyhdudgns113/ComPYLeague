@@ -29,15 +29,14 @@ export class PitcherDBService {
 
       // 2. 리턴할 투수 정보 생성
       const pitcher: OT.PitcherType = {
-        name, pitcherOId, pitcherType, teamName
+        name,
+        pitcherOId,
+        pitcherType,
+        teamName,
       }
 
       // 3. 팀의 투수 배열에 추가
-      await this.pitcherArrModel.findOneAndUpdate(
-        {pitcherType, teamName}, 
-        {$push: {pitcherOIdArr: pitcherOId}},
-        {upsert: true}
-      )
+      await this.pitcherArrModel.findOneAndUpdate({pitcherType, teamName}, {$push: {pitcherOIdArr: pitcherOId}}, {upsert: true})
 
       // 4. 리턴
       return {pitcher}
@@ -57,7 +56,7 @@ export class PitcherDBService {
       if (!pitcherDB) {
         return
       }
-      
+
       const {pitcherType, teamName} = pitcherDB
 
       await this.pitcherInfoModel.deleteOne({_id})

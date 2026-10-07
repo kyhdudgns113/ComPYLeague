@@ -4,15 +4,13 @@ import {Document} from 'mongoose'
 import * as CT from '@commonType'
 import * as V from '@value'
 
-
 /**
  * class PitcherRecord
- * 
+ *
  * - 투수 1명의 한 타석의 기록이다.
  */
 @Schema()
 export class PitcherRecord extends Document {
-
   @Prop({type: String, required: true})
   pitcherOId!: string
 
@@ -44,9 +42,9 @@ export class PitcherRecord extends Document {
 
 /**
  * class PitcherInfo
- * 
+ *
  * - 투수 1명의 개인 정보
-*/
+ */
 @Schema()
 export class PitcherInfo extends Document {
   /** Object Id is in extended class Document */
@@ -56,23 +54,21 @@ export class PitcherInfo extends Document {
 
   @Prop({type: String, required: true})
   pitcherType!: CT.Type_Pitcher
-  
+
   @Prop({type: String, required: true})
   teamName: CT.Type_Team = V.MY_TEAM_NAME
 }
 
-
 @Schema()
 export class PitcherArr extends Document {
-  
   // 배열에 있는 투수들 타입(선발, 중계, 마무리)
   @Prop({type: String, required: true})
   pitcherType!: CT.Type_Pitcher
-  
+
   // 투수 ObjectID 의 배열
   @Prop({type: [String], default: []})
   pitcherOIdArr: string[] = []
-  
+
   // 팀 이름
   @Prop({type: String, required: true})
   teamName!: CT.Type_Team
@@ -82,7 +78,4 @@ export const PitcherRecordSchema = SchemaFactory.createForClass(PitcherRecord)
 export const PitcherInfoSchema = SchemaFactory.createForClass(PitcherInfo)
 export const PitcherArrSchema = SchemaFactory.createForClass(PitcherArr)
 
-PitcherArrSchema.index(
-  {arrType: 1, teamName: 1},
-  {unique: true}
-)
+PitcherArrSchema.index({arrType: 1, teamName: 1}, {unique: true})

@@ -1,6 +1,5 @@
 import {Module} from '@nestjs/common'
-import { MongooseModule } from '@nestjs/mongoose'
-
+import {MongooseModule} from '@nestjs/mongoose'
 
 import * as M from './modules'
 import * as S from '@secret'
@@ -11,7 +10,7 @@ import * as S from '@secret'
     M.DatabaseModule,
     M.SettingModule,
 
-    MongooseModule.forRoot(S.mongoDBUrl)
+    MongooseModule.forRoot(S.mongoDBUrl),
   ],
 })
 export class AppModule {}

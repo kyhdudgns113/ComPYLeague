@@ -1,5 +1,5 @@
 import {Module} from '@nestjs/common'
-import { PitcherDBModule, PitcherDBService } from './schemas';
+import {PitcherDBModule, PitcherDBService} from './schemas'
 
 @Module({
   imports: [PitcherDBModule],

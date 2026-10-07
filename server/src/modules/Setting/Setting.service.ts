@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common'
 
-import { PitcherDBService } from '../Database'
+import {PitcherDBService} from '../Database'
 
 import * as CT from '@commonType'
 import * as DTO from '@dtoType'
@@ -15,11 +15,10 @@ export class SettingService {
   async readTeamPitcherArr(teamName: CT.Type_Team) {
     const where = '/setting/readTeamPitcherArr'
     try {
-      const {pitcherArr: SPArr} = await this.pitcherDBService.readPitcherInfoArr(where, "선발", teamName)
-      const {pitcherArr: RPArr} = await this.pitcherDBService.readPitcherInfoArr(where, "중계", teamName)
-      const {pitcherArr: CPArr} = await this.pitcherDBService.readPitcherInfoArr(where, "마무리", teamName)
+      const {pitcherArr: SPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '선발', teamName)
+      const {pitcherArr: RPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '중계', teamName)
+      const {pitcherArr: CPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '마무리', teamName)
       return {ok: true, body: {SPArr, RPArr, CPArr}, gkdErrMsg: '', statusCode: 200}
-
     } catch (errObj) {
       // ::
       return U.getFailResponse(errObj)
@@ -37,6 +36,24 @@ export class SettingService {
       const {pitcherArr} = await this.pitcherDBService.readPitcherInfoArr(where, pitcherType, teamName)
       return {ok: true, body: {pitcherArr}, gkdErrMsg: '', statusCode: 200}
       // ::
+    } catch (errObj) {
+      // ::
+      return U.getFailResponse(errObj)
+    }
+  }
+
+  // PUT AREA:
+  async movePitcherInArr(data: HTTP.HTTP_MovePitcherInArr) {
+    const where = '/setting/movePitcherInArr'
+    try {
+      const {pitcherOId, pitcherType, targetIdx, targetPitcherType, teamName} = data
+
+      if (pitcherType === targetPitcherType) {
+        //
+      } // ::
+      else {
+        //
+      }
     } catch (errObj) {
       // ::
       return U.getFailResponse(errObj)
