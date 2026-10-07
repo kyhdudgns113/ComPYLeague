@@ -1,0 +1,13 @@
+@use '../../../../../../base/styles/values.scss' as v;
+
+.TeamPage {
+  .MyTeamSubPage {
+    .PitcherArrObject {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 400px;
+      // justify-content 는 하지 않는게 좋을듯. 위에서 아래로 내려와야됨
+    }
+  }
+}

@@ -3,6 +3,7 @@ import type {DivCommonProps} from '@prop'
 
 import * as BT from '../../button'
 import * as CT from '@commonType'
+import * as O from '../../objects'
 
 import './PitcherListPart.scss'
 
@@ -17,6 +18,7 @@ export const PitcherListPart: FC<PitcherListPartProps> = ({pitcherType, ...props
       <p className="title_Part">{`${pitcherType} 투수`}</p>
 
       {/* 2. 투수 목록 */}
+      <O.PitcherArrObject pitcherType={pitcherType} />
 
       {/* 3. 추가 버튼 */}
       <BT.AddPitcherButton pitcherType={pitcherType} />
