@@ -16,9 +16,9 @@ export const MyTeamSubPage: FC<MyTeamSubPageProps> = ({teamIdx, ...props}) => {
 
       {/* 2. 몸통 행 */}
       <div className="blocksRow_SubPage">
-        <P.StartPitcherPart />
-        <P.ReliefPitcherPart />
-        <P.CloserPitcherPart />
+        <P.PitcherListPart pitcherType="선발" />
+        <P.PitcherListPart pitcherType="중계" />
+        <P.PitcherListPart pitcherType="마무리" />
       </div>
     </div>
   )
