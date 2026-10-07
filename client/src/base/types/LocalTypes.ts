@@ -8,7 +8,7 @@ export type APIReturnType = {
 }
 
 export type LefterTabType = "Setting" | "PitchRecord" | null
-export type ModalType = "AddPitcher" | null
+export type ModalType = "AddPitcher" | null // 투수 관련 작업 안하는데 투수타입이 설정되는걸 방지
 export type ModalPitcherType = CT.Type_Pitcher | null
 
 export type Setter<T> = Dispatch<SetStateAction<T>>

@@ -3,14 +3,14 @@ import {ModalSlice} from './slice'
 
 import * as CT from '@commonType'
 
-export const useModalStates = () => useAppSelector(state => state.lefter)
+export const useModalStates = () => useAppSelector(state => state.modal)
 
 export const useModalActions = () => {
   const dispatch = useAppDispatch()
 
   return {
-    resetModalType: () => dispatch(ModalSlice.actions.resetModalType()),
-    setModalTypeAddPitcher: (pitcherType: CT.Type_Pitcher) => dispatch(ModalSlice.actions.setModalTypeAddPitcher(pitcherType))
+    closeModal: () => dispatch(ModalSlice.actions.resetModalType()),
+    openAddPitcherModal: (pitcherType: CT.Type_Pitcher) => dispatch(ModalSlice.actions.setModalTypeAddPitcher(pitcherType)),
   }
 }
 
