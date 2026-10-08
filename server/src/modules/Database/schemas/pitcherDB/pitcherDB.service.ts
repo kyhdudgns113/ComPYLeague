@@ -117,7 +117,7 @@ export class PitcherDBService {
     const {pitcherOIdArr, pitcherType, teamName} = dto
 
     try {
-      await this.pitcherArrModel.updateOne({pitcherType, teamName}, {$set: {pitcherOIdArr}})
+      await this.pitcherArrModel.updateOne({pitcherType, teamName}, {$set: {pitcherOIdArr}, $upsert:true})
       // ::
     } catch (err) {
       // ::
