@@ -1,3 +1,9 @@
+export type Type_BatterClass = 
+  "선발" | "후보"
+
+export type Type_BatterHand = 
+  "좌타" | "우타" | "양타"
+
 export type Type_Pitch = 
 "직구" | "커터" | "투심" | "싱커" | "스플리터" | 
 "커브" | "포크" | "슬라이더" | "체인지업" | "서클 체인지업"

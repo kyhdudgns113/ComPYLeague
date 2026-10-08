@@ -1,10 +1,16 @@
 import {Module} from '@nestjs/common'
-import {PitcherDBModule, PitcherDBService} from './schemas'
+import {BatterDBModule, PitcherDBModule} from './schemas'
 
 @Module({
-  imports: [PitcherDBModule],
+  imports: [
+    BatterDBModule,
+    PitcherDBModule
+  ],
   controllers: [],
   providers: [],
-  exports: [PitcherDBModule],
+  exports: [
+    BatterDBModule,
+    PitcherDBModule
+  ],
 })
 export class DatabaseModule {}
