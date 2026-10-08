@@ -16,6 +16,12 @@ export class SettingController {
   }
 
   // POST AREA:
+  @Post(`/addBatter`)
+  async addBatter(@Body() data: HTTP.HTTP_AddBatter) {
+    const {ok, body, gkdErrMsg, statusCode} = await this.settingService.addBatter(data)
+    return {ok, body, gkdErrMsg, statusCode}
+  }
+  
   @Post(`/addPitcher`)
   async addPitcher(@Body() data: HTTP.HTTP_AddPitcher) {
     const {ok, body, gkdErrMsg, statusCode} = await this.settingService.addPitcher(data)

@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common'
 
-import {PitcherDBService} from '../Database'
+import {BatterDBService, PitcherDBService} from '../Database'
 
 import * as CT from '@commonType'
 import * as DTO from '@dtoType'
@@ -9,7 +9,10 @@ import * as U from '@util'
 
 @Injectable()
 export class SettingService {
-  constructor(private readonly pitcherDBService: PitcherDBService) {}
+  constructor(
+    private readonly batterDBService: BatterDBService,
+    private readonly pitcherDBService: PitcherDBService
+  ) {}
 
   // GET AREA:
   async readTeamPitcherArr(teamName: CT.Type_Team) {
@@ -26,10 +29,30 @@ export class SettingService {
   }
 
   // POST AREA:
+  async addBatter(data: HTTP.HTTP_AddBatter) {
+    const where = '/setting/addBatter'
+    const {batterClass, batterHand, hasPressureSkill, name, teamName} = data
+
+    try {
+      const dto: DTO.DTO_CreateBatter = {batterClass, batterHand, hasPressureSkill, name, teamName}
+      await this.batterDBService.createBatter(where, dto)
+
+      const {batterArr: mainBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "선발")
+      const {batterArr: subBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "후보")
+
+      return {ok: true, body: {mainBatterArr, subBatterArr}, gkdErrMsg: '', statusCode: 200}
+      // ::
+    } catch (errObj) {
+      // ::
+      return U.getFailResponse(errObj)
+    }
+  }
+  
   async addPitcher(data: HTTP.HTTP_AddPitcher) {
     const where = '/setting/addPitcher'
+    const {name, pitcherType, teamName} = data
+
     try {
-      const {name, pitcherType, teamName} = data
       const dto: DTO.DTO_CreatePitcher = {name, pitcherType, teamName}
       await this.pitcherDBService.createPitcherInfo(where, dto)
 
