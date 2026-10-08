@@ -1,6 +1,8 @@
 import type {FC} from 'react'
 import type {TableCommonProps} from '@prop'
 
+import * as R from '../../rows'
+
 // style 은 상위 컴포넌트인 OtherTeamSubPage.scss 에 있다
 
 type MainTableProps = TableCommonProps

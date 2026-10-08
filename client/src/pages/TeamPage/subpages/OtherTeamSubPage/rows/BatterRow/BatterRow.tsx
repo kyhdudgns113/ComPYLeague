@@ -1,14 +1,22 @@
 import type {FC} from 'react'
-import type {DivCommonProps} from '@prop'
+import type {TableRowCommonProps} from '@prop'
 
-import './BatterRow.scss'
+import * as OT from '@objectType'
 
-type BatterRowProps = DivCommonProps
+// style 은 상위 컴포넌트인 OtherTeamSubPage.scss 에 있다
 
-export const BatterRow: FC<BatterRowProps> = ({...props}) => {
+type BatterRowProps = TableRowCommonProps & {
+  batter: OT.BatterType
+  batterIdx: number
+}
+
+export const BatterRow: FC<BatterRowProps> = ({batter, batterIdx, ...props}) => {
   return (
-    <div className={`BatterRow`} {...props}>
-      BatterRow.tsx
-    </div>
+    <tr className={`BatterRow`} {...props}>
+      <td>{batterIdx}</td>
+      <td>{batter.name}</td>
+      <td>{batter.batterClass}</td>
+      <td>{batter.hasPressureSkill ? 'O' : ' '}</td>
+    </tr>
   )
 }
