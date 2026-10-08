@@ -30,7 +30,6 @@ export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...pro
   const onDragStart = useCallback(
     (pitcher: OT.PitcherType) => (e: React.DragEvent<HTMLDivElement>) => {
       e.stopPropagation()
-      console.log(`DEBUG yes`)
       setMovePitcher(pitcher)
     },
     []
