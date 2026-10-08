@@ -1,8 +1,9 @@
 import {useCallback} from 'react'
 
-import {usePitcherStatesContext} from '@context'
+import {usePitcherCallbacksContext, usePitcherStatesContext} from '@context'
 
 import * as OT from '@objectType'
+import * as V from '@value'
 
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
@@ -15,7 +16,8 @@ type PitcherGroupProps = DivCommonProps & {
 }
 
 export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...props}) => {
-  const {setMovePitcherOId} = usePitcherStatesContext()
+  const {movePitcher, setMovePitcher, setCPArr, setRPArr, setSPArr} = usePitcherStatesContext()
+  const {movePitcherInArr} = usePitcherCallbacksContext()
 
   const onDragEnter = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.stopPropagation()
@@ -26,24 +28,33 @@ export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...pro
   }, [])
 
   const onDragStart = useCallback(
-    (pitcherOId: string) => (e: React.DragEvent<HTMLDivElement>) => {
+    (pitcher: OT.PitcherType) => (e: React.DragEvent<HTMLDivElement>) => {
       e.stopPropagation()
-
-      setMovePitcherOId(pitcherOId)
+      console.log(`DEBUG yes`)
+      setMovePitcher(pitcher)
     },
     []
   )
 
   const onDrop = useCallback(
-    (pitcher: OT.PitcherType, pitcherIdx: number) => (e: React.DragEvent<HTMLDivElement>) => {
+    (movePitcher: OT.PitcherType, pitcher: OT.PitcherType, pitcherIdx: number) => (e: React.DragEvent<HTMLDivElement>) => {
+      /**
+       * movePitcher: 이동할 투수
+       * pitcher: 현재 요소의 투수, movePitcher랑 같을수도, 다를수도 있음
+       * pitcherIdx: 현재 요소의 인덱스
+       */
       e.stopPropagation()
 
-      // if (moveDirOId) {
-      //   moveDirectory(dirOId, moveDirOId, null)
-      // } // ::
-      // else if (moveFileOId) {
-      //   moveFile(dirOId, moveFileOId, null)
-      // }
+      movePitcherInArr(movePitcher, pitcherIdx, pitcher.pitcherType, pitcher.teamName).then(res => {
+        const {isSuccess} = res
+        if (isSuccess) {
+          const {CPArr, RPArr, SPArr} = res
+          setCPArr(CPArr)
+          setRPArr(RPArr)
+          setSPArr(SPArr)
+        }
+      })
+      setMovePitcher(V.NULL_PITCHER_OBJ)
     },
     []
   )
@@ -51,10 +62,12 @@ export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...pro
   return (
     <div
       className={`PitcherGroup`}
+      draggable
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
-      onDragStart={onDragStart(pitcher.pitcherOId)}
-      onDrop={onDrop(pitcher, pitcherIdx)}
+      onDragOver={e => e.preventDefault()}
+      onDragStart={onDragStart(pitcher)}
+      onDrop={onDrop(movePitcher, pitcher, pitcherIdx)}
       {...props} // ::
     >
       {pitcher.name}

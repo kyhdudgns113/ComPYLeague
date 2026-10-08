@@ -4,6 +4,7 @@ import type {FC, PropsWithChildren} from 'react'
 
 import * as LT from '@localType'
 import * as OT from '@objectType'
+import * as V from '@value'
 
 // prettier-ignore
 type ContextType = {
@@ -11,7 +12,7 @@ type ContextType = {
   RPArr: OT.PitcherType[], setRPArr: LT.Setter<OT.PitcherType[]>,
   SPArr: OT.PitcherType[], setSPArr: LT.Setter<OT.PitcherType[]>,
 
-  movePitcherOId: string, setMovePitcherOId: LT.Setter<string>,
+  movePitcher: OT.PitcherType, setMovePitcher: LT.Setter<OT.PitcherType>,
 }
 // prettier-ignore
 export const PitcherStatesContext = createContext<ContextType>({
@@ -19,7 +20,7 @@ export const PitcherStatesContext = createContext<ContextType>({
   RPArr: [], setRPArr: () => {},
   SPArr: [], setSPArr: () => {},
 
-  movePitcherOId: '', setMovePitcherOId: () => {},
+  movePitcher: V.NULL_PITCHER_OBJ, setMovePitcher: () => {},
 })
 
 export const usePitcherStatesContext = () => useContext(PitcherStatesContext)
@@ -31,7 +32,7 @@ export const PitcherStatesProvider: FC<PropsWithChildren> = ({children}) => {
   const [SPArr, setSPArr] = useState<OT.PitcherType[]>([])
 
   // 드래그중인 투수의 ObjectID
-  const [movePitcherOId, setMovePitcherOId] = useState<string>('')
+  const [movePitcher, setMovePitcher] = useState<OT.PitcherType>(V.NULL_PITCHER_OBJ)
 
   // prettier-ignore
   const value: ContextType = {
@@ -39,7 +40,7 @@ export const PitcherStatesProvider: FC<PropsWithChildren> = ({children}) => {
     RPArr, setRPArr,
     SPArr, setSPArr,
 
-    movePitcherOId, setMovePitcherOId
+    movePitcher, setMovePitcher
   }
 
   return <PitcherStatesContext.Provider value={value}>{children}</PitcherStatesContext.Provider>

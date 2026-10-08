@@ -88,8 +88,20 @@ export class PitcherDBService {
       }
 
       const pitcherArr = pitcherOIdArr.map(pitcherOId => {
-        return pitcherInfoArr.find(elem => elem._id.toString() === pitcherOId)
-      })
+        const pitcherDB = pitcherInfoArr.find(elem => elem._id.toString() === pitcherOId)
+
+        if (pitcherDB) {
+          const {name, teamName, _id, pitcherType} = pitcherDB
+          const pitcherOId = _id.toString()
+          const ret: OT.PitcherType = {
+            name, pitcherOId, pitcherType, teamName
+          }
+          return ret
+        }
+        else {
+          return null
+        }
+      }).filter(elem => elem !== null)
 
       return {pitcherArr}
       // ::

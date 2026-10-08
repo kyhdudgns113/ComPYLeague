@@ -42,7 +42,7 @@ export const PitcherArrObject: FC<PitcherArrObjectProps> = ({pitcherType, ...pro
   }, [targetArr])
 
   return (
-    <div className={`PitcherArrObject`} {...props}>
+    <div className={`PitcherArrObject`} onDragOver={e => e.preventDefault()} {...props}>
       {pitcherArr.map((pitcher, pitcherIdx) => {
         return <G.PitcherGroup key={pitcherIdx} pitcher={pitcher} pitcherIdx={pitcherIdx} />
       })}

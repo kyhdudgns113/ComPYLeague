@@ -13,5 +13,5 @@ export type HTTP_MovePitcherInArr = {
   targetIdx: number
   targetPitcherType: CT.Type_Pitcher
 
-  teamName: string
+  teamName: CT.Type_Team
 }
