@@ -78,4 +78,4 @@ export const PitcherRecordSchema = SchemaFactory.createForClass(PitcherRecord)
 export const PitcherInfoSchema = SchemaFactory.createForClass(PitcherInfo)
 export const PitcherArrSchema = SchemaFactory.createForClass(PitcherArr)
 
-PitcherArrSchema.index({arrType: 1, teamName: 1}, {unique: true})
+PitcherArrSchema.index({pitcherType: 1, teamName: 1}, {unique: true})
