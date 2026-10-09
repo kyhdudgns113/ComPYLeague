@@ -47,13 +47,8 @@ export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamName, 
         addBatter(batterClass, batterHand, batterNum, hasPressureSkill, name, teamName).then(res => {
           const {isSuccess} = res
 
-          console.log(`isSuccess: ${isSuccess}`)
-
           if (isSuccess) {
             const {mainBatterArr, subBatterArr} = res
-
-            console.log(`main: ${mainBatterArr}`)
-            console.log(`sub: ${subBatterArr}`)
 
             setMainBatterArr(mainBatterArr)
             setSubBatterArr(subBatterArr)
