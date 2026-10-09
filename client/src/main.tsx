@@ -12,13 +12,13 @@ import './base/styles/index.css'
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Provider store={store}>
-      <URLProvider>
-        <PitcherProvider>
-          <BatterProvider>
+      <PitcherProvider>
+        <BatterProvider>
+          <URLProvider>
             <App />
-          </BatterProvider>
-        </PitcherProvider>
-      </URLProvider>
+          </URLProvider>
+        </BatterProvider>
+      </PitcherProvider>
     </Provider>
   </BrowserRouter>
 )

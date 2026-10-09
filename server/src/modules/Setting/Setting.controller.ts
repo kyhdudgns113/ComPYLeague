@@ -9,6 +9,12 @@ export class SettingController {
   constructor(private readonly settingService: SettingService) {}
 
   // GET AREA:
+  @Get('/readTeamBatterArr/:teamName')
+  async readTeamBatterArr(@Param('teamName') teamName: CT.Type_Team) {
+    const {ok, body, gkdErrMsg, statusCode} = await this.settingService.readTeamBatterArr(teamName)
+    return {ok, body, gkdErrMsg, statusCode}
+  }
+  
   @Get('/readTeamPitcherArr/:teamName')
   async readTeamPitcherArr(@Param('teamName') teamName: CT.Type_Team) {
     const {ok, body, gkdErrMsg, statusCode} = await this.settingService.readTeamPitcherArr(teamName)

@@ -10,16 +10,45 @@ import * as U from '@util'
 
 // prettier-ignore
 type ContextType = {
+  getBatterArr: (teamName: CT.Type_Team) => Promise<LT.APIReturnType>
+
   addBatter: (batterClass: CT.Type_BatterClass, batterHand: CT.Type_BatterHand, batterNum: number, hasPressureSkill: boolean, name: string, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 }
 // prettier-ignore
 export const BatterCallbacksContext = createContext<ContextType>({
-  addBatter: () => Promise.resolve({isSuccess: false, errMsg: 'is not initialized'})
+  getBatterArr: () => Promise.resolve({isSuccess: false}),
+
+  addBatter: () => Promise.resolve({isSuccess: false})
 })
 
 export const useBatterCallbacksContext = () => useContext(BatterCallbacksContext)
 
 export const BatterCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
+  // GET AREA:
+  const getBatterArr = useCallback(async (teamName: CT.Type_Team) => {
+    const url = `/setting/readTeamBatterArr/${teamName}`
+    return F.get(url, null)
+      .then(res => res.json())
+      .then(res => {
+        const {ok, body, statusCode, gkdErrMsg, message} = res
+        if (ok) {
+          const {mainBatterArr, subBatterArr} = body
+          if (!mainBatterArr || !subBatterArr) {
+            return {isSuccess: false, errMsg: 'pitcherArr is falsy'} as LT.APIReturnType
+          }
+          return {isSuccess: true, mainBatterArr, subBatterArr} as LT.APIReturnType
+        } // ::
+        else {
+          U.alertErrMsg(url, statusCode, gkdErrMsg, message)
+          return {isSuccess: false} as LT.APIReturnType
+        }
+      })
+      .catch(errObj => {
+        U.alertErrors(url, errObj)
+        return {isSuccess: false} as LT.APIReturnType
+      })
+  }, [])
+
   // POST AREA:
   const addBatter = useCallback(
     async (
@@ -67,6 +96,8 @@ export const BatterCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
 
   // prettier-ignore
   const value: ContextType = {
+    getBatterArr,
+    
     addBatter
   }
   return <BatterCallbacksContext.Provider value={value}>{children}</BatterCallbacksContext.Provider>

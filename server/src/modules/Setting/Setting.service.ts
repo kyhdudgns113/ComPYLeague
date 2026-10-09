@@ -15,6 +15,20 @@ export class SettingService {
   ) {}
 
   // GET AREA:
+  async readTeamBatterArr(teamName: CT.Type_Team) {
+    const where = '/setting/readTeamBatterArr'
+    try {
+      const {batterArr: mainBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "선발")
+      const {batterArr: subBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "후보")
+      
+      return {ok: true, body: {mainBatterArr, subBatterArr}, gkdErrMsg: '', statusCode: 200}
+      // ::
+    } catch (errObj) {
+      // ::
+      return U.getFailResponse(errObj)
+    }
+  }
+
   async readTeamPitcherArr(teamName: CT.Type_Team) {
     const where = '/setting/readTeamPitcherArr'
     try {
@@ -22,6 +36,7 @@ export class SettingService {
       const {pitcherArr: RPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '중계', teamName)
       const {pitcherArr: CPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '마무리', teamName)
       return {ok: true, body: {SPArr, RPArr, CPArr}, gkdErrMsg: '', statusCode: 200}
+      // ::
     } catch (errObj) {
       // ::
       return U.getFailResponse(errObj)
