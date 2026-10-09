@@ -4,7 +4,6 @@ import {useBatterCallbacksContext, useBatterStatesContext} from '@context'
 
 import * as C from '@component'
 import * as CT from '@commonType'
-import * as V from '@value'
 
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
@@ -27,11 +26,61 @@ export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamName, 
 
   const batterNum = batterClass === '선발' ? mainBatterArr.length : subBatterArr.length
 
+  const _submit = useCallback(
+    (
+      batterClass: CT.Type_BatterClass,
+      batterHand: CT.Type_BatterHand,
+      batterNum: number,
+      hasPressureSkill: boolean,
+      name: string,
+      teamName: CT.Type_Team
+    ) => {
+      if (!name || name.length === 0) {
+        alert(`이름을 입력해주세요`)
+        return
+      }
+
+      addBatter(batterClass, batterHand, batterNum, hasPressureSkill, name, teamName).then(res => {
+        const {isSuccess} = res
+
+        if (isSuccess) {
+          const {mainBatterArr, subBatterArr} = res
+
+          setMainBatterArr(mainBatterArr)
+          setSubBatterArr(subBatterArr)
+          alert(`${batterClass}타자 등록이 완료되었어요!`)
+          closeModal()
+        } // ::
+        else {
+          const {errMsg} = res
+          alert(`[AddBatterModal] ${errMsg}`)
+        }
+      })
+    },
+    []
+  )
+
   const onChangeName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation()
 
     setName(e.currentTarget.value)
   }, [])
+
+  const onClickHand = useCallback(
+    (batterHand: CT.Type_BatterHand) => (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      setBatterHand(batterHand)
+    },
+    []
+  )
+
+  const onClickPressure = useCallback(
+    (isPressure: boolean) => (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      setHasPressureSkill(isPressure)
+    },
+    []
+  )
 
   const onClickSubmit = useCallback(
     (
@@ -44,35 +93,74 @@ export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamName, 
       ) =>
       (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation()
-        addBatter(batterClass, batterHand, batterNum, hasPressureSkill, name, teamName).then(res => {
-          const {isSuccess} = res
+        _submit(batterClass, batterHand, batterNum, hasPressureSkill, name, teamName)
+      },
+    []
+  )
 
-          if (isSuccess) {
-            const {mainBatterArr, subBatterArr} = res
+  const onKeyDown = useCallback(
+    (
+        batterClass: CT.Type_BatterClass,
+        batterHand: CT.Type_BatterHand,
+        batterNum: number,
+        hasPressureSkill: boolean,
+        name: string,
+        teamName: CT.Type_Team
+      ) =>
+      (e: React.KeyboardEvent<HTMLDivElement>) => {
+        const clicked = e.key
 
-            setMainBatterArr(mainBatterArr)
-            setSubBatterArr(subBatterArr)
-            alert(`${batterClass}타자 등록이 완료되었어요!`)
+        switch (clicked) {
+          case 'Enter':
+            _submit(batterClass, batterHand, batterNum, hasPressureSkill, name, teamName)
+            break
+          case 'Escape':
             closeModal()
-          } // ::
-          else {
-            const {errMsg} = res
-            alert(`[AddBatterModal] ${errMsg}`)
-          }
-        })
+            break
+          default:
+            break
+        }
       },
     []
   )
 
   return (
-    <C.Modal className="AddBatterModal" onClose={closeModal} {...props}>
+    <C.Modal
+      className="AddBatterModal"
+      onClose={closeModal}
+      onKeyDown={onKeyDown(batterClass, batterHand, batterNum, hasPressureSkill, name, teamName)}
+      {...props}
+    >
       {/* 1. 타이틀 */}
       <p className="title_Modal">{`${batterClass}타자 추가`}</p>
 
       {/* 2. 입력행: 이름 */}
       <div className="inputRow_Modal inputRow_name">
-        <p>이름</p>
-        <input onChange={onChangeName} value={name} />
+        <p className="name_Modal">이름</p>
+        <input className="inputName_Modal" autoFocus={true} onChange={onChangeName} value={name} />
+      </div>
+
+      {/* 3. 입력행: 손잡이 */}
+      <div className="inputRow_hand">
+        <div className={`buttonHand_Modal ${batterHand === '좌타' && '_bold'}`} onClick={onClickHand('좌타')}>
+          좌타
+        </div>
+        <div className={`buttonHand_Modal ${batterHand === '우타' && '_bold'}`} onClick={onClickHand('우타')}>
+          우타
+        </div>
+        <div className={`buttonHand_Modal ${batterHand === '양타' && '_bold'}`} onClick={onClickHand('양타')}>
+          양타
+        </div>
+      </div>
+
+      {/* 4. 입력행: 위압감 여부 */}
+      <div className="inputRow_pressure">
+        <div className={`buttonPress ${hasPressureSkill && '_bold'}`} onClick={onClickPressure(true)}>
+          위압감 O
+        </div>
+        <div className={`buttonPress ${!hasPressureSkill && '_bold'}`} onClick={onClickPressure(false)}>
+          위압감 X
+        </div>
       </div>
 
       {/* 3. 버튼 행 */}

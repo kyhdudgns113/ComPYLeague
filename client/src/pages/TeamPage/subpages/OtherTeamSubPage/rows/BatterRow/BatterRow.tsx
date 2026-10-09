@@ -13,9 +13,9 @@ type BatterRowProps = TableRowCommonProps & {
 export const BatterRow: FC<BatterRowProps> = ({batter, batterIdx, ...props}) => {
   return (
     <tr className={`BatterRow`} {...props}>
-      <td>{batterIdx}</td>
+      <td>{batterIdx + 1}</td>
       <td>{batter.name}</td>
-      <td>{batter.batterClass}</td>
+      <td>{batter.batterHand}</td>
       <td>{batter.hasPressureSkill ? 'O' : ' '}</td>
     </tr>
   )
