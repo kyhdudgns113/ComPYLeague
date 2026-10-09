@@ -10,11 +10,11 @@ import * as U from '@util'
 
 // prettier-ignore
 type ContextType = {
-  addBatter: (batterClass: CT.Type_BatterClass, batterHand: CT.Type_BatterHand, hasPressureSkill: boolean, name: string, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
+  addBatter: (batterClass: CT.Type_BatterClass, batterHand: CT.Type_BatterHand, batterNum: number, hasPressureSkill: boolean, name: string, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 }
 // prettier-ignore
 export const BatterCallbacksContext = createContext<ContextType>({
-  addBatter: () => Promise.resolve({isSuccess: false})
+  addBatter: () => Promise.resolve({isSuccess: false, errMsg: 'is not initialized'})
 })
 
 export const useBatterCallbacksContext = () => useContext(BatterCallbacksContext)
@@ -22,11 +22,19 @@ export const useBatterCallbacksContext = () => useContext(BatterCallbacksContext
 export const BatterCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
   // POST AREA:
   const addBatter = useCallback(
-    async (batterClass: CT.Type_BatterClass, batterHand: CT.Type_BatterHand, hasPressureSkill: boolean, name: string, teamName: CT.Type_Team) => {
+    async (
+      batterClass: CT.Type_BatterClass,
+      batterHand: CT.Type_BatterHand,
+      batterNum: number,
+      hasPressureSkill: boolean,
+      name: string,
+      teamName: CT.Type_Team
+    ) => {
       const url = '/setting/addBatter'
       const data: HTTP.HTTP_AddBatter = {
         batterClass,
         batterHand,
+        batterNum,
         hasPressureSkill,
         name,
         teamName,
@@ -46,12 +54,12 @@ export const BatterCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
           } // ::
           else {
             U.alertErrMsg(url, statusCode, gkdErrMsg, message)
-            return {isSuccess: false} as LT.APIReturnType
+            return {isSuccess: false, errMsg: `ok is false`} as LT.APIReturnType
           }
         })
         .catch(errObj => {
           U.alertErrors(url, errObj)
-          return {isSuccess: false} as LT.APIReturnType
+          return {isSuccess: false, errMsg: `catch catch`} as LT.APIReturnType
         })
     },
     []

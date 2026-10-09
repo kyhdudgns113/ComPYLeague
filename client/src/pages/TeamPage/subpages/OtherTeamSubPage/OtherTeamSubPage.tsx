@@ -18,8 +18,8 @@ export const OtherTeamSubPage: FC<OtherTeamSubPageProps> = ({teamIdx, ...props})
 
       {/* 2. 테이블 행 */}
       <div className="tableRow_SubPage">
-        <TB.MainTable />
-        <TB.SubTable />
+        <TB.MainTable teamName={V.TEAM_NAME[teamIdx]} />
+        <TB.SubTable teamName={V.TEAM_NAME[teamIdx]} />
       </div>
     </div>
   )

@@ -31,10 +31,10 @@ export class SettingService {
   // POST AREA:
   async addBatter(data: HTTP.HTTP_AddBatter) {
     const where = '/setting/addBatter'
-    const {batterClass, batterHand, hasPressureSkill, name, teamName} = data
+    const {batterClass, batterHand, batterNum, hasPressureSkill, name, teamName} = data
 
     try {
-      const dto: DTO.DTO_CreateBatter = {batterClass, batterHand, hasPressureSkill, name, teamName}
+      const dto: DTO.DTO_CreateBatter = {batterClass, batterHand, batterNum, hasPressureSkill, name, teamName}
       await this.batterDBService.createBatter(where, dto)
 
       const {batterArr: mainBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "선발")

@@ -1,13 +1,20 @@
+import {useBatterStatesContext} from '@context'
+
 import type {FC} from 'react'
 import type {TableCommonProps} from '@prop'
 
+import * as CT from '@commonType'
 import * as R from '../../rows'
 
 // style 은 상위 컴포넌트인 OtherTeamSubPage.scss 에 있다
 
-type MainTableProps = TableCommonProps
+type MainTableProps = TableCommonProps & {
+  teamName: CT.Type_Team
+}
 
-export const MainTable: FC<MainTableProps> = ({...props}) => {
+export const MainTable: FC<MainTableProps> = ({teamName, ...props}) => {
+  const {mainBatterArr} = useBatterStatesContext()
+
   return (
     <div className={`MainTableWrapper`}>
       {/* 1. 타이틀 */}
@@ -24,12 +31,13 @@ export const MainTable: FC<MainTableProps> = ({...props}) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="td_number">1</td>
-            <td className="td_name">데스파이네'21</td>
-            <td className="td_hand">좌타</td>
-            <td className="td_pressurer">O</td>
-          </tr>
+          {/* 타자 정보 */}
+          {mainBatterArr.map((batter, batterIdx) => {
+            return <R.BatterRow batter={batter} batterIdx={batterIdx} key={batterIdx} />
+          })}
+
+          {/* 타자 추가 행 */}
+          <R.AddBatterRow batterClass="선발" teamName={teamName} />
         </tbody>
       </table>
     </div>

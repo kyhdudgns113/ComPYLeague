@@ -2,7 +2,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {createRoot} from 'react-dom/client'
 import {Provider} from 'react-redux'
 
-import {PitcherProvider, URLProvider} from '@context'
+import {BatterProvider, PitcherProvider, URLProvider} from '@context'
 import {store} from '@redux'
 
 import App from './App.tsx'
@@ -14,7 +14,9 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <URLProvider>
         <PitcherProvider>
-          <App />
+          <BatterProvider>
+            <App />
+          </BatterProvider>
         </PitcherProvider>
       </URLProvider>
     </Provider>

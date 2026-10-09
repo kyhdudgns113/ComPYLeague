@@ -17,7 +17,7 @@ import './Template.scss'
 type TemplateProps = DivCommonProps
 
 export const Template: FC<TemplateProps> = ({...props}) => {
-  const {modalType, modalPitcherType} = useModalStates()
+  const {modalType, modalPitcherType, modalBatterClass, modalBatterTeam} = useModalStates()
 
   const onClickTemplate = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     // 템플릿 클릭시 이벤트 작성
@@ -40,6 +40,9 @@ export const Template: FC<TemplateProps> = ({...props}) => {
 
       {/* 3. 모달 영역 */}
       {modalType === 'AddPitcher' && modalPitcherType !== null && <M.AddPitcherModal pitcherType={modalPitcherType} />}
+      {modalType === 'AddBatter' && modalBatterClass !== null && modalBatterTeam !== null && (
+        <M.AddBatterModal batterClass={modalBatterClass} teamName={modalBatterTeam} />
+      )}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import * as CT from './CommonTypes'
 export type DTO_CreateBatter = {
   batterClass: CT.Type_BatterClass
   batterHand: CT.Type_BatterHand
+  batterNum: number
   hasPressureSkill: boolean
   name: string
   teamName: CT.Type_Team

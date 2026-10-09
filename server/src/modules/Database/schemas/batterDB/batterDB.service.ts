@@ -18,11 +18,11 @@ export class BatterDBService {
   async createBatter(where: string, dto: DTO.DTO_CreateBatter) {
     where = where + '/createBatter'
 
-    const {batterClass, batterHand, hasPressureSkill, name, teamName} = dto
+    const {batterClass, batterHand, batterNum, hasPressureSkill, name, teamName} = dto
 
     try {
       // 1. 새로운 타자 DB 에 저장
-      const newBatter = new this.batterInfoModel({batterClass, batterHand, hasPressureSkill, name, teamName})
+      const newBatter = new this.batterInfoModel({batterClass, batterHand, batterNum, hasPressureSkill, name, teamName})
       const batterDB = await newBatter.save()
       const batterOId = batterDB._id.toString()
 
@@ -37,7 +37,11 @@ export class BatterDBService {
       }
 
       // 3. 타자 배열에 삽입
-      await this.batterArrModel.findOneAndUpdate({batterClass, teamName}, {$push: {batterOIdArr: batterOId}}, {$upsert: true})
+      await this.batterArrModel.findOneAndUpdate(
+        {batterClass, teamName},
+        {$push: {batterOIdArr: batterOId}},
+        {upsert: true}
+      )
 
       // 4. 리턴
       return {batter}
