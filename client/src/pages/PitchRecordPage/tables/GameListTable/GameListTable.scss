@@ -1,0 +1,43 @@
+@use '../../../../base/styles/values.scss' as v;
+
+.Template {
+  .PitchRecordPage {
+    .GameListTable {
+      border-collapse: collapse;
+      border-color: #000000;
+      border-style: solid;
+      border-width: 4px;
+
+      height: fit-content;
+
+      margin-top: 16px;
+
+      width: fit-content;
+
+      thead {
+
+        th {
+          border-color: #000000;
+          border-style: solid;
+          border-bottom-width: 2px;
+          border-left-width: 0px;
+          border-right-width: 2px;
+          border-top-width: 0px;
+        }
+
+        th.th_number {
+          width: 64px;
+        }
+        th.th_teamName {
+          width: 60px;
+        }
+        th.th_pitcherName {
+          width: 120px;
+        }
+        th.th_button {
+          width: 48px;
+        }
+      }
+    }
+  }
+}

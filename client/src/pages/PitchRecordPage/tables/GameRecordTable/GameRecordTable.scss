@@ -1,0 +1,64 @@
+@use '../../../../base/styles/values.scss' as v;
+
+.PitchRecordPage {
+  table.GameRecordTable {
+    border-collapse: collapse;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 4px;
+    
+    thead {
+      border-color: #000000;
+      border-style: solid;
+      
+      border-bottom-width: 2px;
+
+      th {
+        border-color: #000000;
+        border-style: solid;
+        
+        border-right-width: 1px;
+
+        font-size: 18px;
+  
+        padding-top: 2px;
+        padding-bottom: 2px;
+  
+        &.th_number {
+          width: 24px;
+        }
+        &.th_name {
+          width: 120px;
+        }
+        &.th_class {
+          width: 48px;
+        }
+        &.th_pressure {
+          width: 60px;
+        }
+        &.th_pitch {
+          width: 160px;
+        }
+        &.th_result {
+          width: 40px;
+        }
+      }
+
+    }
+
+    tbody {
+
+      td {
+        border-color: #000000;
+        border-style: solid;
+        
+        border-right-width: 1px;
+
+        font-size: 16px;
+
+        text-align: center;
+      }
+    }
+
+  }
+}
