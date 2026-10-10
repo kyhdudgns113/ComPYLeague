@@ -12,6 +12,13 @@ export type BatterType = {
   teamName: CT.Type_Team
 }
 
+export type GameInfoType = {
+  enemyTeam: CT.Type_Team
+  gameNum: number
+  leagueNum: number
+  SPName: string
+}
+
 export type PitcherType = {
   name: string
   pitcherOId: string // uniqueId, ObjectId

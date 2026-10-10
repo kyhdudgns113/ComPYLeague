@@ -9,10 +9,24 @@ export type DTO_CreateBatter = {
   teamName: CT.Type_Team
 }
 
+export type DTO_CreateGameInfo = {
+  enemyTeam: CT.Type_Team
+  gameNum: number
+  leagueNum: number
+  SPName: string
+}
+
 export type DTO_CreatePitcher = {
   name: string
   pitcherType: CT.Type_Pitcher
   teamName: CT.Type_Team
+}
+
+export type DTO_ReadGameInfoArr = {
+  enemyTeam?: CT.Type_Team
+  gameNum?: number
+  leagueNum?: number
+  SPName?: string
 }
 
 export type DTO_UpdatebatterArr = {
