@@ -7,6 +7,7 @@ export const store = configureStore({
   reducer: {
     lefter: Slices.lefterSlice.reducer,
     modal: Slices.ModalSlice.reducer,
+    record: Slices.RecordSlice.reducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

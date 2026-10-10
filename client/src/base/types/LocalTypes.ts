@@ -7,6 +7,8 @@ export type APIReturnType = {
   [key: string]: any
 }
 
+export type GameNumType = number | null
+export type LeagueNumType = number | null
 export type LefterTabType = "Setting" | "PitchRecord" | null
 export type ModalBatterTeamType = CT.Type_Team | null
 export type ModalBatterClassType = CT.Type_BatterClass | null
