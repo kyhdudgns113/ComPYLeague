@@ -1,7 +1,7 @@
 import {useCallback} from 'react'
 import {Outlet} from 'react-router-dom'
 
-import {useModalStates} from '@redux'
+import {useModalStates, useRecordStates} from '@redux'
 
 import {Footer} from './Footer'
 import {Header} from './Header'
@@ -17,9 +17,11 @@ import './Template.scss'
 type TemplateProps = DivCommonProps
 
 export const Template: FC<TemplateProps> = ({...props}) => {
-  const {modalType, modalPitcherType, modalBatterClass, modalBatterTeam} = useModalStates()
+  const {modalBatterClass, modalBatterTeam, modalLeagueNum, modalPitcherType, modalType} = useModalStates()
+  const {gameArr} = useRecordStates()
 
   const onClickTemplate = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
     // 템플릿 클릭시 이벤트 작성
   }, [])
 
@@ -43,6 +45,7 @@ export const Template: FC<TemplateProps> = ({...props}) => {
       {modalType === 'AddBatter' && modalBatterClass !== null && modalBatterTeam !== null && (
         <M.AddBatterModal batterClass={modalBatterClass} teamName={modalBatterTeam} />
       )}
+      {modalType === 'AddGame' && modalLeagueNum !== null && <M.AddGameModal arrLen={gameArr.length} leagueNum={modalLeagueNum} />}
     </div>
   )
 }

@@ -1,0 +1,180 @@
+@use '../../../base/styles/values.scss' as v;
+
+.Template {
+  .AddBatterModal {
+
+    height: fit-content;
+
+    padding: 16px 24px 24px 16px;
+
+    width: 300px;
+
+    .title_Modal {
+      cursor: default;
+
+      font-size: 24px;
+      font-weight: 700;
+
+      height: fit-content;
+
+      margin-bottom: 32px;
+
+      padding: 8px;
+
+      text-align: center;
+      user-select: none;
+
+      width: 100%;
+    }
+
+    .inputRow_name {
+      display: flex;
+      flex-direction: row;
+
+      width: fit-content;
+
+      p.name_Modal {
+        align-items: center;
+        display: flex;
+        font-size: 18px;
+        font-weight: 700;
+
+        justify-content: center;
+        user-select: none;
+        width: 60px;
+      }
+
+      input.inputName_Modal {
+        font-size: 18px;
+        padding: 4px 8px 4px 8px;
+        transition: box-shadow 0.25s ease;
+        width: 160px;
+
+        &:focus {
+          box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
+
+    .inputRow_hand {
+      display: flex;
+      flex-direction: row;
+
+      margin-top: 32px;
+      gap: 16px;
+
+      .buttonHand_Modal {
+        align-items: center;
+        border-color: #000000;
+        border-style: solid;
+        border-radius: 8px;
+        border-width: 4px;
+
+        cursor: pointer;
+        display: flex;
+        height: 32px;
+
+        font-size: 20px;
+
+        justify-content: center;
+
+        transition: background-color 0.25s ease;
+        user-select: none;
+        width: 64px;
+
+        &:hover {
+          background-color: #C0C0C0;
+        }
+        &:hover._bold{
+          background-color: #C0C0C0;
+        }
+
+        &._bold {
+          background-color: #e0e0e0;
+          font-weight: 700;
+        }
+      }
+
+    }
+
+    .inputRow_pressure {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+
+      margin-top: 32px;
+
+      .buttonPress {
+        align-items: center;
+        border-color: #000000;
+        border-style: solid;
+        border-radius: 8px;
+        border-width: 4px;
+
+        cursor: pointer;
+        display: flex;
+        height: 36px;
+
+        font-size: 20px;
+
+        justify-content: center;
+
+        transition: background-color 0.25s ease;
+        user-select: none;
+        width: 100px;
+
+        &:hover {
+          background-color: #C0C0C0;
+        }
+        &:hover._bold{
+          background-color: #C0C0C0;
+        }
+
+        &._bold {
+          background-color: #e0e0e0;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .buttonRow_Modal {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+
+      height: fit-content;
+      justify-content: center;
+
+      margin-top: 32px;
+
+      width: 100%;
+
+      button {
+        // border-color: #000000; 왜 이거대로 안되지?
+        border-width: 4px;
+
+        cursor: pointer;
+        font-size: 20px;
+        height: fit-content;
+
+        padding: 4px 8px 4px 8px;
+
+        transition: border-color 0.1s ease;
+        transition: scale 0.1s ease;
+
+        user-select: none;
+        width: 80px;
+
+        &:active {
+          scale: 95%;
+        }
+
+        &:hover {
+          background-color: #D0D0D0;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

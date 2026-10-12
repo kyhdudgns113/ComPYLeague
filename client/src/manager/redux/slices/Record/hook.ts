@@ -2,7 +2,7 @@ import {useAppSelector, useAppDispatch} from '@redux'
 import {RecordSlice} from './slice'
 
 
-export const useRecordStates = () => useAppSelector(state => state.lefter)
+export const useRecordStates = () => useAppSelector(state => state.record)
 
 export const useRecordActions = () => {
   const dispatch = useAppDispatch()

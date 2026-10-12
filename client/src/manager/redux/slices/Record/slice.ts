@@ -5,13 +5,15 @@ import type {PayloadAction} from '@reduxjs/toolkit' // eslint-disable-line
 import * as LT from '@localType'
 
 interface RecordState {
+  gameArr: any[]
   gameNum: LT.GameNumType
   leagueNum: LT.LeagueNumType
 }
 
 const initialState: RecordState = {
+  gameArr: [],
   gameNum: null,
-  leagueNum: null
+  leagueNum: 1
 }
 
 export const RecordSlice = createSlice({
