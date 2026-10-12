@@ -11,13 +11,15 @@
       border-color: #000000;
       border-style: solid;
       
-      border-bottom-width: 2px;
+      border-bottom-width: 1px;
 
       th {
         border-color: #000000;
         border-style: solid;
-        
-        border-right-width: 1px;
+        border-bottom-width: 4px;
+        border-left-width: 0px;
+        border-right-width: 2px;
+        border-top-width: 0px;
 
         font-size: 18px;
   
@@ -31,12 +33,14 @@
           width: 120px;
         }
         &.th_class {
-          width: 48px;
+          width: 32px;
         }
         &.th_pressure {
-          width: 60px;
+          border-right-width: 4px;
+          width: 32px;
         }
         &.th_pitch {
+          // border-right-width: 1px;
           width: 160px;
         }
         &.th_result {
@@ -52,11 +56,19 @@
         border-color: #000000;
         border-style: solid;
         
-        border-right-width: 1px;
+        border-bottom-width: 0px;
+        border-left-width: 0px;
+        border-right-width: 2px;
+        border-top-width: 0px;
 
         font-size: 16px;
 
         text-align: center;
+
+        &.td_pressure {
+          border-right-width: 4px;
+          width: 32px;
+        }
       }
     }
 
