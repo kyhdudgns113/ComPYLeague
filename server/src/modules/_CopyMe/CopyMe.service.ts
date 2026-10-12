@@ -6,11 +6,11 @@ export class CopyMeService {
 
   async copyMeGet(testArg: any) {
     try {
-      return {ok: true, body: {}, errObj: {}}
+      return {ok: true, body: {}, gkdErrMsg: '', statusCode: 200}
       // ::
     } catch (errObj) {
       // ::
-      return {ok: false, body: {}, errObj}
+      return {ok: false, body: {}, gkdErrMsg: '', statusCode: 200}
     }
   }
 }
