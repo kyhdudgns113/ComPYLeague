@@ -1,13 +1,13 @@
 @use '../../../base/styles/values.scss' as v;
 
 .Template {
-  .AddBatterModal {
+  .AddGameModal {
 
     height: fit-content;
 
     padding: 16px 24px 24px 16px;
 
-    width: 300px;
+    width: 400px;
 
     .title_Modal {
       cursor: default;
@@ -31,6 +31,8 @@
       display: flex;
       flex-direction: row;
 
+      margin-bottom: 16px;
+
       width: fit-content;
 
       p.name_Modal {
@@ -41,14 +43,14 @@
 
         justify-content: center;
         user-select: none;
-        width: 60px;
+        width: 100px;
       }
 
       input.inputName_Modal {
         font-size: 18px;
         padding: 4px 8px 4px 8px;
         transition: box-shadow 0.25s ease;
-        width: 160px;
+        width: 200px;
 
         &:focus {
           box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
@@ -56,82 +58,50 @@
       }
     }
 
-    .inputRow_hand {
-      display: flex;
-      flex-direction: row;
-
-      margin-top: 32px;
-      gap: 16px;
-
-      .buttonHand_Modal {
-        align-items: center;
-        border-color: #000000;
-        border-style: solid;
-        border-radius: 8px;
-        border-width: 4px;
-
-        cursor: pointer;
-        display: flex;
-        height: 32px;
-
-        font-size: 20px;
-
-        justify-content: center;
-
-        transition: background-color 0.25s ease;
-        user-select: none;
-        width: 64px;
-
-        &:hover {
-          background-color: #C0C0C0;
-        }
-        &:hover._bold{
-          background-color: #C0C0C0;
-        }
-
-        &._bold {
-          background-color: #e0e0e0;
-          font-weight: 700;
-        }
-      }
-
-    }
-
-    .inputRow_pressure {
+    .inputRow_team {
+      align-items: center;
       display: flex;
       flex-direction: row;
       gap: 16px;
 
-      margin-top: 32px;
+      height: 60px;
+      justify-content: center;
 
-      .buttonPress {
+      margin-top: 16px;
+
+      width: 400px;
+
+      .buttonWrapper {
         align-items: center;
-        border-color: #000000;
+        border-color: #c0c0c0;
         border-style: solid;
-        border-radius: 8px;
-        border-width: 4px;
+        border-width: 2px;
 
         cursor: pointer;
         display: flex;
-        height: 36px;
 
-        font-size: 20px;
-
+        height: 50px;
         justify-content: center;
 
-        transition: background-color 0.25s ease;
-        user-select: none;
-        width: 100px;
+        transition: background-color 0.2s ease;
+        transition: box-shadow 0.2s ease;
+        transition: font-size 0.1s ease;
+        transition: font-weight 0.1s ease;
+
+        user-select: none;;
+        width: 50px;
+
+        &:active {
+          font-size: 15px;
+        }
 
         &:hover {
-          background-color: #C0C0C0;
-        }
-        &:hover._bold{
-          background-color: #C0C0C0;
+          box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.4);
         }
 
-        &._bold {
-          background-color: #e0e0e0;
+        &._selected {
+          background-color: #d0d0d0;
+          border-color: #000000;
           font-weight: 700;
         }
       }

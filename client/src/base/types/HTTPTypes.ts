@@ -9,6 +9,13 @@ export type HTTP_AddBatter = {
   teamName: CT.Type_Team
 }
 
+export type HTTP_AddGame = {
+  arrLen: number,
+  leagueNum: number,
+  SPName: string,
+  teamName: CT.Type_Team,
+}
+
 export type HTTP_AddPitcher = {
   name: string
   pitcherType: CT.Type_Pitcher

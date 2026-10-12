@@ -18,7 +18,6 @@ export const AddGameButton: FC<AddGameButtonProps> = ({...props}) => {
   const onClickIcon = useCallback(
     (leagueNum: number | null) => (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation()
-      alert('yes')
 
       if (leagueNum === null) {
         alert(`[AddGameButton] leagueNum 이 null 이에요`)

@@ -3,9 +3,10 @@ import {createSlice} from '@reduxjs/toolkit'
 import type {PayloadAction} from '@reduxjs/toolkit' // eslint-disable-line
 
 import * as LT from '@localType'
+import * as OT from '@objectType'
 
 interface RecordState {
-  gameArr: any[]
+  gameArr: OT.GameInfoType[]
   gameNum: LT.GameNumType
   leagueNum: LT.LeagueNumType
 }
@@ -20,6 +21,9 @@ export const RecordSlice = createSlice({
   name: 'record',
   initialState,
   reducers: {
+    setGameArr: (state, action: PayloadAction<OT.GameInfoType[]>) => {
+      state.gameArr = action.payload
+    },
     setGameNum: (state, action: PayloadAction<LT.GameNumType>) => {
       const gameNum = action.payload
       if (gameNum !== null && (gameNum <= 0 || gameNum > 144)) {
