@@ -21,7 +21,7 @@ export const PitchRecordPage: FC<PitchRecordPageProps> = ({...props}) => {
           {/* 2-1-1. 게임 추가 버튼 */}
           <BTN.AddGameButton />
 
-          {/* 2-1-2. 테이블 */}
+          {/* 2-1-2. 게임 목록 테이블 */}
           <TB.GameListTable />
         </div>
 

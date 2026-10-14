@@ -1,1 +1,1 @@
-export * from './GameTableRow'
+export * from './GameRow'
