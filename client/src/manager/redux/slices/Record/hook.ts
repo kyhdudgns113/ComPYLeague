@@ -9,6 +9,8 @@ export const useRecordActions = () => {
   const dispatch = useAppDispatch()
 
   return {
+    addGame: (gameElem: OT.GameInfoType) => dispatch(RecordSlice.actions.addGameRow(gameElem)),
+    
     clearGameNum: () => dispatch(RecordSlice.actions.setGameNum(null)),
     clearLeagueNum: () => dispatch(RecordSlice.actions.setLeagueNum(null)),
 

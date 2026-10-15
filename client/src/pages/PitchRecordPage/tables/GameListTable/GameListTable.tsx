@@ -1,11 +1,17 @@
+import {useRecordStates} from '@redux'
+
 import type {FC} from 'react'
 import type {TableCommonProps} from '@prop'
 
 import './GameListTable.scss'
 
+import * as R from '../../rows'
+
 type GameListTableProps = TableCommonProps
 
 export const GameListTable: FC<GameListTableProps> = ({...props}) => {
+  const {gameArr} = useRecordStates()
+
   return (
     <table className={`GameListTable`} {...props}>
       <thead>
@@ -16,6 +22,11 @@ export const GameListTable: FC<GameListTableProps> = ({...props}) => {
           <th className="th_button">O</th>
         </tr>
       </thead>
+      <tbody>
+        {gameArr.map((gameRow, gameIdx) => {
+          return <R.GameRow gameRow={gameRow} key={gameIdx} />
+        })}
+      </tbody>
     </table>
   )
 }

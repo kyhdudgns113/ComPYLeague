@@ -21,7 +21,24 @@ export class RecordService {
       await this.recordDBService.createGameInfo(where, createDTO)
 
       const readDTO: DTO.DTO_ReadGameInfoArr = {
-        gameNum: arrLen, leagueNum
+        leagueNum
+      }
+      const {gameInfoArr: gameArr} = await this.recordDBService.readGameInfoArr(where, readDTO)
+      
+      return {ok: true, body: {gameArr}, gkdErrMsg: '', statusCode: 200}
+      // ::
+    } catch (errObj) {
+      // ::
+      return U.getFailResponse(errObj)
+    }
+  }
+
+  async readGameArr(leagueNum: number) {
+    const where = '/record/readGameArr'
+    
+    try {
+      const readDTO: DTO.DTO_ReadGameInfoArr = {
+        leagueNum
       }
       const {gameInfoArr: gameArr} = await this.recordDBService.readGameInfoArr(where, readDTO)
       

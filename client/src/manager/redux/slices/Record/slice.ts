@@ -21,6 +21,10 @@ export const RecordSlice = createSlice({
   name: 'record',
   initialState,
   reducers: {
+    addGameRow: (state, action: PayloadAction<OT.GameInfoType>) => {
+      state.gameArr = [action.payload, ...state.gameArr]
+    },
+
     setGameArr: (state, action: PayloadAction<OT.GameInfoType[]>) => {
       state.gameArr = action.payload
     },
