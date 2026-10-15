@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 
-import {useModalActions, useRecordStates} from '@redux'
+import {useBaseStates, useModalActions} from '@redux'
 
 import type {FC} from 'react'
 import type {SpanCommonProps} from '@prop'
@@ -13,7 +13,7 @@ type AddGameButtonProps = SpanCommonProps
 
 export const AddGameButton: FC<AddGameButtonProps> = ({...props}) => {
   const {openAddGameModal} = useModalActions()
-  const {leagueNum} = useRecordStates()
+  const {leagueNum} = useBaseStates()
 
   const onClickIcon = useCallback(
     (leagueNum: number | null) => (e: React.MouseEvent<HTMLDivElement>) => {

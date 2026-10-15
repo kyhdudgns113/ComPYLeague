@@ -41,6 +41,7 @@ export const AddGameModal: FC<AddGameModalProps> = ({arrLen, leagueNum, ...props
       if (isSuccess) {
         const {gameArr} = res
         setGameArr(gameArr)
+        closeModal()
       } // ::
       else {
         const {errMsg} = res

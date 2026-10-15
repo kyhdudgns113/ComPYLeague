@@ -8,13 +8,11 @@ import * as OT from '@objectType'
 interface RecordState {
   gameArr: OT.GameInfoType[]
   gameNum: LT.GameNumType
-  leagueNum: LT.LeagueNumType
 }
 
 const initialState: RecordState = {
   gameArr: [],
-  gameNum: null,
-  leagueNum: 1
+  gameNum: null
 }
 
 export const RecordSlice = createSlice({
@@ -36,16 +34,6 @@ export const RecordSlice = createSlice({
       } // ::
       else {
         state.gameNum = gameNum
-      }
-    },
-    setLeagueNum: (state, action: PayloadAction<LT.LeagueNumType>) => {
-      const leagueNum = action.payload
-      if (leagueNum !== null && leagueNum < 0) {
-        alert(`[RecordSlice] leagueNum 이 이상합니다. ${leagueNum}`)
-        state.leagueNum = null
-      } // ::
-      else {
-        state.leagueNum = leagueNum
       }
     }
   }
