@@ -1,7 +1,7 @@
 import {useAppSelector, useAppDispatch} from '@redux'
 import {copyMeSlice} from './slice'
 
-export const useCopyMeStates = () => useAppSelector(state => state.lefter)
+export const useCopyMeStates = () => useAppSelector(state => state.copyMe)
 
 export const useCopyMeActions = () => {
   const dispatch = useAppDispatch()

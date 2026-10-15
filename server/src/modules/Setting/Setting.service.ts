@@ -5,7 +5,9 @@ import {BatterDBService, PitcherDBService} from '../Database'
 import * as CT from '@commonType'
 import * as DTO from '@dtoType'
 import * as HTTP from '@httpType'
+import * as OT from '@objectTye'
 import * as U from '@util'
+import * as V from '@value'
 
 @Injectable()
 export class SettingService {
@@ -15,13 +17,26 @@ export class SettingService {
   ) {}
 
   // GET AREA:
-  async readTeamBatterArr(teamName: CT.Type_Team) {
-    const where = '/setting/readTeamBatterArr'
+  async readBatterMatrixAll() {
+    const where = '/setting/readBatterMatrixAll'
     try {
-      const {batterArr: mainBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "선발")
-      const {batterArr: subBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "후보")
+      const TOTAL_TEAM_CNT = V.TEAM_IDX_ARR.length
+
+      const mainBatterMatrix: OT.BatterType[][] = Array.from({length: TOTAL_TEAM_CNT}, () => [])
+      const subBatterMatrix: OT.BatterType[][] = Array.from({length: TOTAL_TEAM_CNT}, () => [])
+
+      for (let teamIdx = 0; teamIdx < TOTAL_TEAM_CNT; teamIdx++) {
+        const teamName = V.TEAM_NAME[teamIdx]
+
+        const {batterArr: mainBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "선발")
+        const {batterArr: subBatterArr} = await this.batterDBService.readBatterInfoArr(where, teamName, "후보")
+
+        mainBatterMatrix[teamIdx] = mainBatterArr
+        subBatterMatrix[teamIdx] = subBatterArr
+      }
+
       
-      return {ok: true, body: {mainBatterArr, subBatterArr}, gkdErrMsg: '', statusCode: 200}
+      return {ok: true, body: {mainBatterMatrix, subBatterMatrix}, gkdErrMsg: '', statusCode: 200}
       // ::
     } catch (errObj) {
       // ::
@@ -29,13 +44,28 @@ export class SettingService {
     }
   }
 
-  async readTeamPitcherArr(teamName: CT.Type_Team) {
-    const where = '/setting/readTeamPitcherArr'
+  async readPitcherMatrixAll() {
+    const where = '/setting/readPitcherMatrixAll'
     try {
-      const {pitcherArr: SPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '선발', teamName)
-      const {pitcherArr: RPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '중계', teamName)
-      const {pitcherArr: CPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '마무리', teamName)
-      return {ok: true, body: {SPArr, RPArr, CPArr}, gkdErrMsg: '', statusCode: 200}
+      const TOTAL_TEAM_CNT = V.TEAM_IDX_ARR.length
+
+      const SPMatrix: OT.PitcherType[][] = Array.from({length: TOTAL_TEAM_CNT}, () => [])
+      const RPMatrix: OT.PitcherType[][] = Array.from({length: TOTAL_TEAM_CNT}, () => [])
+      const CPMatrix: OT.PitcherType[][] = Array.from({length: TOTAL_TEAM_CNT}, () => [])
+
+      for (let teamIdx = 0; teamIdx < TOTAL_TEAM_CNT; teamIdx++) {
+        const teamName = V.TEAM_NAME[teamIdx]
+
+        const {pitcherArr: SPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '선발', teamName)
+        const {pitcherArr: RPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '중계', teamName)
+        const {pitcherArr: CPArr} = await this.pitcherDBService.readPitcherInfoArr(where, '마무리', teamName)
+
+        SPMatrix[teamIdx] = SPArr
+        RPMatrix[teamIdx] = RPArr
+        CPMatrix[teamIdx] = CPArr
+      }
+
+      return {ok: true, body: {SPMatrix, RPMatrix, CPMatrix}, gkdErrMsg: '', statusCode: 200}
       // ::
     } catch (errObj) {
       // ::

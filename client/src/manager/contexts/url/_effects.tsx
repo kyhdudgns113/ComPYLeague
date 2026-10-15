@@ -1,9 +1,7 @@
 import {createContext, useContext, useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 
-import {useLefterActions} from '@redux'
-
-import {useBatterStatesContext} from '../batter'
+import {useBaseActions, useLefterActions} from '@redux'
 
 import type {FC, PropsWithChildren} from 'react'
 
@@ -17,7 +15,7 @@ export const URLEffectsContext = createContext<ContextType>({})
 export const useURLEffectsContext = () => useContext(URLEffectsContext)
 
 export const URLEffectsProvider: FC<PropsWithChildren> = ({children}) => {
-  const {setTeamaName} = useBatterStatesContext()
+  const {resetPageTeamName, setPageTeamName} = useBaseActions()
 
   const location = useLocation()
 
@@ -46,20 +44,19 @@ export const URLEffectsProvider: FC<PropsWithChildren> = ({children}) => {
     }
   }, [location])
 
-  // 자동 갱신 : URL 파싱하여 팀 이름 갱신
+  // 자동 갱신 : URL 파싱하여 PageTeamName 조정 (타자 설정 페이지때만 작동)
   useEffect(() => {
-    const pathParts = location.pathname.split('/main/setting/')
+    const pathParts = location.pathname.split('/main/')
     if (pathParts.length > 1) {
       const teamIdx = parseInt(pathParts[1])
-
-      if (!(0 <= teamIdx && teamIdx < 10)) {
-        alert(`[URLEffect] teamIdx: ${teamIdx}`)
+      if (0 <= teamIdx && teamIdx < V.TEAM_IDX_ARR.length) {
+        setPageTeamName(V.TEAM_NAME[teamIdx])
+      } // ::
+      else {
+        resetPageTeamName()
       }
-
-      setTeamaName(V.TEAM_NAME[teamIdx])
     }
   }, [location])
 
-  //
   return <URLEffectsContext.Provider value={{}}>{children}</URLEffectsContext.Provider>
 }

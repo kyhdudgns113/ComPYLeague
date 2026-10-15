@@ -11,7 +11,7 @@ import * as U from '@util'
 
 // prettier-ignore
 type ContextType = {
-  getPitcherArr: (teamName: CT.Type_Team) => Promise<LT.APIReturnType>
+  getPitcherMatrixAll: () => Promise<LT.APIReturnType>
 
   addPitcher: (name: string, pitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 
@@ -19,7 +19,7 @@ type ContextType = {
 }
 // prettier-ignore
 export const PitcherCallbacksContext = createContext<ContextType>({
-  getPitcherArr: () => Promise.resolve({isSuccess: false}),
+  getPitcherMatrixAll: () => Promise.resolve({isSuccess: false}),
 
   addPitcher: () => Promise.resolve({isSuccess: false}),
 
@@ -32,18 +32,18 @@ export const usePitcherCallbacksContext = () => useContext(PitcherCallbacksConte
 export const PitcherCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
   // GET AREA:
 
-  const getPitcherArr = useCallback(async (teamName: CT.Type_Team) => {
-    const url = `/setting/readTeamPitcherArr/${teamName}`
+  const getPitcherMatrixAll = useCallback(async () => {
+    const url = `/setting/readPitcherMatrixAll`
     return F.get(url, null)
       .then(res => res.json())
       .then(res => {
         const {ok, body, statusCode, gkdErrMsg, message} = res
         if (ok) {
-          const {CPArr, RPArr, SPArr} = body
-          if (!CPArr || !RPArr || !SPArr) {
-            return {isSuccess: false, errMsg: 'pitcherArr is falsy'} as LT.APIReturnType
+          const {CPMatrix, RPMatrix, SPMatrix} = body
+          if (!CPMatrix || !RPMatrix || !SPMatrix) {
+            return {isSuccess: false, errMsg: `matrix is falsy. \n  - SP:${SPMatrix}\n  - RP:${RPMatrix}\n  - CP:${CPMatrix}`} as LT.APIReturnType
           }
-          return {isSuccess: true, CPArr, RPArr, SPArr} as LT.APIReturnType
+          return {isSuccess: true, CPMatrix, RPMatrix, SPMatrix} as LT.APIReturnType
         } // ::
         else {
           U.alertErrMsg(url, statusCode, gkdErrMsg, message)
@@ -129,7 +129,7 @@ export const PitcherCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
 
   // prettier-ignore
   const value: ContextType = {
-    getPitcherArr,
+    getPitcherMatrixAll,
 
     addPitcher,
 

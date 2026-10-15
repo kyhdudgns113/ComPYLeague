@@ -1,3 +1,6 @@
+export * from './Base'
+export * from './Batter'
 export * from './Lefter'
 export * from './Modal'
+export * from './Pitcher'
 export * from './Record'

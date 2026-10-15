@@ -1,13 +1,11 @@
 import {createContext, useContext, useEffect} from 'react'
 
-import {MY_TEAM_NAME} from '@value'
-
 import {usePitcherCallbacksContext} from './_callbacks'
-import {usePitcherStatesContext} from './__states'
 
 import type {FC, PropsWithChildren} from 'react'
 
 import * as U from '@util'
+import {usePitcherActions} from '@redux'
 
 // prettier-ignore
 type ContextType = {}
@@ -17,17 +15,17 @@ export const PitcherEffectsContext = createContext<ContextType>({})
 export const usePitcherEffectsContext = () => useContext(PitcherEffectsContext)
 
 export const PitcherEffectsProvider: FC<PropsWithChildren> = ({children}) => {
-  const {setCPArr, setRPArr, setSPArr} = usePitcherStatesContext()
-  const {getPitcherArr} = usePitcherCallbacksContext()
+  const {setCPMatrix, setRPMatrix, setSPMatrix} = usePitcherActions()
+  const {getPitcherMatrixAll} = usePitcherCallbacksContext()
 
   // 자동 갱신: pitcherArr
   useEffect(() => {
-    getPitcherArr(MY_TEAM_NAME).then(res => {
+    getPitcherMatrixAll().then(res => {
       const {isSuccess} = res
       if (isSuccess) {
-        setCPArr(res.CPArr)
-        setRPArr(res.RPArr)
-        setSPArr(res.SPArr)
+        setCPMatrix(res.CPMatrix)
+        setRPMatrix(res.RPMatrix)
+        setSPMatrix(res.SPMatrix)
       } // ::
       else {
         U.alertErrors('PitcherEffect', res)

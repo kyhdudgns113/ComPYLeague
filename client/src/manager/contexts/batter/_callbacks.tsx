@@ -10,13 +10,13 @@ import * as U from '@util'
 
 // prettier-ignore
 type ContextType = {
-  getBatterArr: (teamName: CT.Type_Team) => Promise<LT.APIReturnType>
+  getBatterMatrix: () => Promise<LT.APIReturnType>
 
   addBatter: (batterClass: CT.Type_BatterClass, batterHand: CT.Type_BatterHand, batterNum: number, hasPressureSkill: boolean, name: string, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 }
 // prettier-ignore
 export const BatterCallbacksContext = createContext<ContextType>({
-  getBatterArr: () => Promise.resolve({isSuccess: false}),
+  getBatterMatrix: () => Promise.resolve({isSuccess: false}),
 
   addBatter: () => Promise.resolve({isSuccess: false})
 })
@@ -25,18 +25,19 @@ export const useBatterCallbacksContext = () => useContext(BatterCallbacksContext
 
 export const BatterCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
   // GET AREA:
-  const getBatterArr = useCallback(async (teamName: CT.Type_Team) => {
-    const url = `/setting/readTeamBatterArr/${teamName}`
+
+  const getBatterMatrix = useCallback(async () => {
+    const url = `/setting/readBatterMatrixAll`
     return F.get(url, null)
       .then(res => res.json())
       .then(res => {
         const {ok, body, statusCode, gkdErrMsg, message} = res
         if (ok) {
-          const {mainBatterArr, subBatterArr} = body
-          if (!mainBatterArr || !subBatterArr) {
-            return {isSuccess: false, errMsg: 'pitcherArr is falsy'} as LT.APIReturnType
+          const {mainBatterMatrix, subBatterMatrix} = body
+          if (!mainBatterMatrix || !subBatterMatrix) {
+            return {isSuccess: false, errMsg: `some arr is falsy\nmain: ${mainBatterMatrix}\nsub: ${subBatterMatrix}`} as LT.APIReturnType
           }
-          return {isSuccess: true, mainBatterArr, subBatterArr} as LT.APIReturnType
+          return {isSuccess: true, mainBatterMatrix, subBatterMatrix} as LT.APIReturnType
         } // ::
         else {
           U.alertErrMsg(url, statusCode, gkdErrMsg, message)
@@ -96,7 +97,7 @@ export const BatterCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
 
   // prettier-ignore
   const value: ContextType = {
-    getBatterArr,
+    getBatterMatrix,
     
     addBatter
   }

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-import {usePitcherStatesContext} from '@context'
+import {usePitcherCPArr, usePitcherRPArr, usePitcherSPArr} from '@redux'
 
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
@@ -8,6 +8,7 @@ import type {DivCommonProps} from '@prop'
 import * as CT from '@commonType'
 import * as G from '../../groups'
 import * as OT from '@objectType'
+import * as V from '@value'
 
 import './PitcherArrObject.scss'
 
@@ -16,7 +17,9 @@ type PitcherArrObjectProps = DivCommonProps & {
 }
 
 export const PitcherArrObject: FC<PitcherArrObjectProps> = ({pitcherType, ...props}) => {
-  const {CPArr, RPArr, SPArr} = usePitcherStatesContext()
+  const CPArr = usePitcherCPArr(V.MY_TEAM_IDX)
+  const RPArr = usePitcherRPArr(V.MY_TEAM_IDX)
+  const SPArr = usePitcherSPArr(V.MY_TEAM_IDX)
 
   const [pitcherArr, setPitcherArr] = useState<OT.PitcherType[]>([])
 

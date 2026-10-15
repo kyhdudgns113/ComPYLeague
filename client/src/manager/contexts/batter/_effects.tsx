@@ -1,11 +1,11 @@
 import {createContext, useContext, useEffect} from 'react'
 
-import {useBatterStatesContext} from './__states'
 import {useBatterCallbacksContext} from './_callbacks'
 
 import type {FC, PropsWithChildren} from 'react'
 
 import * as U from '@util'
+import {useBatterActions} from '@redux'
 
 // prettier-ignore
 type ContextType = {}
@@ -15,24 +15,24 @@ export const BatterEffectsContext = createContext<ContextType>({})
 export const useBatterEffectsContext = () => useContext(BatterEffectsContext)
 
 export const BatterEffectsProvider: FC<PropsWithChildren> = ({children}) => {
-  const {teamName, setMainBatterArr, setSubBatterArr} = useBatterStatesContext()
-  const {getBatterArr} = useBatterCallbacksContext()
+  const {setMainBatterMatrix, setSubBatterMatrix} = useBatterActions()
+  const {getBatterMatrix} = useBatterCallbacksContext()
 
   useEffect(() => {
-    getBatterArr(teamName).then(res => {
+    getBatterMatrix().then(res => {
       const {isSuccess} = res
 
       if (isSuccess) {
-        const {mainBatterArr, subBatterArr} = res
+        const {mainBatterMatrix, subBatterMatrix} = res
 
-        setMainBatterArr(mainBatterArr)
-        setSubBatterArr(subBatterArr)
+        setMainBatterMatrix(mainBatterMatrix)
+        setSubBatterMatrix(subBatterMatrix)
       } // ::
       else {
         U.alertErrors('BatterEffect', res)
       }
     })
-  }, [teamName])
+  }, [])
 
   //
   return <BatterEffectsContext.Provider value={{}}>{children}</BatterEffectsContext.Provider>

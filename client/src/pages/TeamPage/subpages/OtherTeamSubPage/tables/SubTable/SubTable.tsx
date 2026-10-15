@@ -1,19 +1,18 @@
-import {useBatterStatesContext} from '@context'
+import {useSubBatterArr} from '@redux'
 
 import type {FC} from 'react'
 import type {TableCommonProps} from '@prop'
 
-import * as CT from '@commonType'
 import * as R from '../../rows'
 
 // style 은 상위 컴포넌트인 OtherTeamSubPage.scss 에 있다
 
 type SubTableProps = TableCommonProps & {
-  teamName: CT.Type_Team
+  teamIdx: number
 }
 
-export const SubTable: FC<SubTableProps> = ({teamName, ...props}) => {
-  const {subBatterArr} = useBatterStatesContext()
+export const SubTable: FC<SubTableProps> = ({teamIdx, ...props}) => {
+  const subBatterArr = useSubBatterArr(teamIdx)
 
   return (
     <div className={`SubTableWrapper`}>
@@ -37,7 +36,7 @@ export const SubTable: FC<SubTableProps> = ({teamName, ...props}) => {
           })}
 
           {/* 타자 추가 행 */}
-          <R.AddBatterRow batterClass="선발" teamName={teamName} />
+          <R.AddBatterRow batterClass="선발" teamIdx={teamIdx} />
         </tbody>
       </table>
     </div>

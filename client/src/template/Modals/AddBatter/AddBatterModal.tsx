@@ -1,9 +1,10 @@
 import {useCallback, useState} from 'react'
-import {useModalActions} from '@redux'
-import {useBatterCallbacksContext, useBatterStatesContext} from '@context'
+import {useBatterActions, useMainBatterArr, useModalActions, useSubBatterArr} from '@redux'
+import {useBatterCallbacksContext} from '@context'
 
 import * as C from '@component'
 import * as CT from '@commonType'
+import * as V from '@value'
 
 import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
@@ -12,12 +13,16 @@ import './AddBatterModal.scss'
 
 type AddBatterModalProps = DivCommonProps & {
   batterClass: CT.Type_BatterClass
-  teamName: CT.Type_Team
+  teamIdx: number
 }
 
-export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamName, ...props}) => {
+export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamIdx, ...props}) => {
   const {closeModal} = useModalActions()
-  const {mainBatterArr, subBatterArr, setMainBatterArr, setSubBatterArr} = useBatterStatesContext()
+  const {setMainBatterArr, setSubBatterArr} = useBatterActions()
+
+  const mainBatterArr = useMainBatterArr(teamIdx)
+  const subBatterArr = useSubBatterArr(teamIdx)
+
   const {addBatter} = useBatterCallbacksContext()
 
   const [batterHand, setBatterHand] = useState<CT.Type_BatterHand>('우타')
@@ -25,6 +30,7 @@ export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamName, 
   const [name, setName] = useState<string>('')
 
   const batterNum = batterClass === '선발' ? mainBatterArr.length : subBatterArr.length
+  const teamName = V.TEAM_NAME[teamIdx]
 
   const _submit = useCallback(
     (
@@ -46,8 +52,8 @@ export const AddBatterModal: FC<AddBatterModalProps> = ({batterClass, teamName, 
         if (isSuccess) {
           const {mainBatterArr, subBatterArr} = res
 
-          setMainBatterArr(mainBatterArr)
-          setSubBatterArr(subBatterArr)
+          setMainBatterArr(teamIdx, mainBatterArr)
+          setSubBatterArr(teamIdx, subBatterArr)
           alert(`${batterClass}타자 등록이 완료되었어요!`)
           closeModal()
         } // ::

@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 
-import {usePitcherCallbacksContext, usePitcherStatesContext} from '@context'
+import {usePitcherCallbacksContext} from '@context'
 
 import * as OT from '@objectType'
 import * as V from '@value'
@@ -9,6 +9,7 @@ import type {FC} from 'react'
 import type {DivCommonProps} from '@prop'
 
 import './PitcherGroup.scss'
+import {usePitcherActions, usePitcherStates} from '@redux'
 
 type PitcherGroupProps = DivCommonProps & {
   pitcher: OT.PitcherType
@@ -16,7 +17,8 @@ type PitcherGroupProps = DivCommonProps & {
 }
 
 export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...props}) => {
-  const {movePitcher, setMovePitcher, setCPArr, setRPArr, setSPArr} = usePitcherStatesContext()
+  const {selectMovedPitcher, setCPArr, setRPArr, setSPArr} = usePitcherActions()
+  const {movedPitcher} = usePitcherStates()
   const {movePitcherInArr} = usePitcherCallbacksContext()
 
   const onDragEnter = useCallback((e: React.DragEvent<HTMLDivElement>) => {
@@ -30,7 +32,7 @@ export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...pro
   const onDragStart = useCallback(
     (pitcher: OT.PitcherType) => (e: React.DragEvent<HTMLDivElement>) => {
       e.stopPropagation()
-      setMovePitcher(pitcher)
+      selectMovedPitcher(pitcher)
     },
     []
   )
@@ -48,12 +50,11 @@ export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...pro
         const {isSuccess} = res
         if (isSuccess) {
           const {CPArr, RPArr, SPArr} = res
-          setCPArr(CPArr)
-          setRPArr(RPArr)
-          setSPArr(SPArr)
+          setCPArr(CPArr, V.MY_TEAM_IDX)
+          setRPArr(RPArr, V.MY_TEAM_IDX)
+          setSPArr(SPArr, V.MY_TEAM_IDX)
         }
       })
-      setMovePitcher(V.NULL_PITCHER_OBJ)
     },
     []
   )
@@ -66,7 +67,7 @@ export const PitcherGroup: FC<PitcherGroupProps> = ({pitcher, pitcherIdx, ...pro
       onDragLeave={onDragLeave}
       onDragOver={e => e.preventDefault()}
       onDragStart={onDragStart(pitcher)}
-      onDrop={onDrop(movePitcher, pitcher, pitcherIdx)}
+      onDrop={onDrop(movedPitcher, pitcher, pitcherIdx)}
       {...props} // ::
     >
       {pitcher.name}

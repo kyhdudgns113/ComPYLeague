@@ -7,7 +7,7 @@ import type {PayloadAction} from '@reduxjs/toolkit' // eslint-disable-line
 
 interface ModalState {
   modalBatterClass: LT.ModalBatterClassType,
-  modalBatterTeam: LT.ModalBatterTeamType,
+  modalBatterTeamIdx: LT.ModalBatterTeamIdxType,
   modalLeagueNum: number | null
   modalPitcherType: LT.ModalPitcherType,
   modalType: LT.ModalType
@@ -15,7 +15,7 @@ interface ModalState {
 
 const initialState: ModalState = {
   modalBatterClass: null,
-  modalBatterTeam: null,
+  modalBatterTeamIdx: null,
   modalLeagueNum: null,
   modalPitcherType: null,
   modalType: null,
@@ -27,22 +27,22 @@ export const ModalSlice = createSlice({
   reducers: {
     resetModalType: state => {
       state.modalBatterClass = null
-      state.modalBatterTeam = null
+      state.modalBatterTeamIdx = null
       state.modalLeagueNum = null
       state.modalPitcherType = null
       state.modalType = null
     },
 
-    setModalTypeAddBatter: (state, action: PayloadAction<{batterClass: CT.Type_BatterClass, teamName: CT.Type_Team}>) => {
+    setModalTypeAddBatter: (state, action: PayloadAction<{batterClass: CT.Type_BatterClass, teamIdx: number}>) => {
       state.modalBatterClass = action.payload.batterClass
-      state.modalBatterTeam = action.payload.teamName
+      state.modalBatterTeamIdx = action.payload.teamIdx
       state.modalLeagueNum = null
       state.modalType = "AddBatter"
       state.modalPitcherType = null
     },
     setModalLeagueNum: (state, action: PayloadAction<{leagueNum: number | null}>) => {
       state.modalBatterClass = null
-      state.modalBatterTeam = null
+      state.modalBatterTeamIdx = null
       state.modalLeagueNum = action.payload.leagueNum
       state.modalType = "AddGame"
       state.modalPitcherType = null
@@ -51,7 +51,7 @@ export const ModalSlice = createSlice({
       const pitcherType = action.payload
 
       state.modalBatterClass = null
-      state.modalBatterTeam = null
+      state.modalBatterTeamIdx = null
       state.modalLeagueNum = null
       state.modalType = "AddPitcher"
       state.modalPitcherType = pitcherType

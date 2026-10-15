@@ -1,6 +1,6 @@
 import {useCallback, useState} from 'react'
-import {useModalActions} from '@redux'
-import {usePitcherCallbacksContext, usePitcherStatesContext} from '@context'
+import {useModalActions, usePitcherActions} from '@redux'
+import {usePitcherCallbacksContext} from '@context'
 
 import * as C from '@component'
 import * as CT from '@commonType'
@@ -17,7 +17,7 @@ type AddPitcherModalProps = DivCommonProps & {
 
 export const AddPitcherModal: FC<AddPitcherModalProps> = ({pitcherType, ...props}) => {
   const {closeModal} = useModalActions()
-  const {setCPArr, setRPArr, setSPArr} = usePitcherStatesContext()
+  const {setCPArr, setRPArr, setSPArr} = usePitcherActions()
   const {addPitcher} = usePitcherCallbacksContext()
 
   const [pitcherName, setPitcherName] = useState<string>('')
@@ -39,13 +39,13 @@ export const AddPitcherModal: FC<AddPitcherModalProps> = ({pitcherType, ...props
 
           switch (pitcherType) {
             case '선발':
-              setSPArr(pitcherArr)
+              setSPArr(pitcherArr, V.MY_TEAM_IDX)
               break
             case '중계':
-              setRPArr(pitcherArr)
+              setRPArr(pitcherArr, V.MY_TEAM_IDX)
               break
             case '마무리':
-              setCPArr(pitcherArr)
+              setCPArr(pitcherArr, V.MY_TEAM_IDX)
               break
           }
 

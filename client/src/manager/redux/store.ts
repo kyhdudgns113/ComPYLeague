@@ -5,8 +5,11 @@ import * as Slices from './slices'
 
 export const store = configureStore({
   reducer: {
+    base: Slices.BaseSlice.reducer,
+    batter: Slices.BatterSlice.reducer,
     lefter: Slices.lefterSlice.reducer,
     modal: Slices.ModalSlice.reducer,
+    pitcher: Slices.PitcherSlice.reducer,
     record: Slices.RecordSlice.reducer
   },
   middleware: getDefaultMiddleware =>
