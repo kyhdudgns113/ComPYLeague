@@ -45,7 +45,7 @@ export class BatterArr extends Document {
 export const BatterInfoSchema = SchemaFactory.createForClass(BatterInfo)
 export const BatterArrSchema = SchemaFactory.createForClass(BatterArr)
 
-BatterInfoSchema.index({batterNum: 1, teamName: 1}, {unique: true})
+BatterInfoSchema.index({batterNum: 1, batterClass: 1, teamName: 1}, {unique: true})
 BatterInfoSchema.index({name: 1, teamName: 1}, {unique: true})
 
 BatterArrSchema.index({batterClass: 1, teamName: 1}, {unique: true})
