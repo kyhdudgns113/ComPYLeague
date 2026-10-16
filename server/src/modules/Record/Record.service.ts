@@ -16,7 +16,7 @@ export class RecordService {
 
     try {
       const createDTO: DTO.DTO_CreateGameInfo = {
-        gameNum: arrLen, leagueNum, SPName, enemyTeam: teamName
+        gameNum: arrLen+1, leagueNum, SPName, enemyTeam: teamName
       }
       await this.recordDBService.createGameInfo(where, createDTO)
 

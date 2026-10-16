@@ -55,6 +55,8 @@ export const RecordCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
   // POST AREA:
   const addGame = useCallback(async (arrLen: number, leagueNum: number, SPName: string, teamName: CT.Type_Team) => {
     const url = '/record/addGame'
+
+    // arrLen 이 0이면 서버에서 1번째 게임을 만든다
     const data: HTTP.HTTP_AddGame = {
       arrLen,
       leagueNum,
