@@ -30,3 +30,24 @@ export type PitcherType = {
   pitcherType: CT.Type_Pitcher
   teamName: CT.Type_Team
 }
+
+export type RecordElementType = {
+  /**
+   * 해당 타순에 타자가 바뀔 수 있다
+   * 어차피 바뀌는거 검색 용이하게 더 넣는다
+   */
+  batterClass: CT.Type_BatterClass
+  batterHand: CT.Type_BatterHand
+  batterName: string
+  hasPressure: boolean
+
+  pitch: PitchType[]
+  result: CT.Type_Result
+}
+
+export type RecordObjectType = {
+  gameNum: number
+  leagueNum: number
+
+  RecordMatrix: RecordElementType[][]
+}
