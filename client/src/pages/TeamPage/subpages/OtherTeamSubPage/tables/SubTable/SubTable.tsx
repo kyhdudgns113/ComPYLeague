@@ -36,7 +36,7 @@ export const SubTable: FC<SubTableProps> = ({teamIdx, ...props}) => {
           })}
 
           {/* 타자 추가 행 */}
-          <R.AddBatterRow batterClass="선발" teamIdx={teamIdx} />
+          <R.AddBatterRow batterClass="후보" teamIdx={teamIdx} />
         </tbody>
       </table>
     </div>
