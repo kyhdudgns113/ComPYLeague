@@ -12,11 +12,14 @@ export type Type_Location =
   "BL" | "B7" | "B8" | "B9" | "BR"
 
 export type Type_Pitch = 
-"직구" | "컷터" | "투심" | "싱커" | "스플리터" | 
-"커브" | "포크" | "슬라이더" | "체인지업" | "써클 체인지업"
+  "직구" | "컷터" | "투심" | "싱커" | "스플리터" | 
+  "커브" | "포크" | "슬라이더" | "체인지업" | "써클 체인지업"
 
 export type Type_Pitcher = 
-"선발" | "중계" | "마무리"
+  "선발" | "중계" | "마무리"
+
+export type Type_PitcherHand =
+  "좌완" | "우완" | "좌사" | "우사" | "좌언" | "우언"
 
 export type Type_Result = 
   '1루타' | '2루타' | '3루타' | '홈런' |

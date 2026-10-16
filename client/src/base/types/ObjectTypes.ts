@@ -26,6 +26,7 @@ export type PitchType = {
 
 export type PitcherType = {
   name: string
+  pitcherHand: CT.Type_PitcherHand
   pitcherOId: string // uniqueId, ObjectId
   pitcherType: CT.Type_Pitcher
   teamName: CT.Type_Team
@@ -42,6 +43,7 @@ export type RecordElementType = {
   hasPressure: boolean
 
   pitch: PitchType[]
+  pitcherName: string
   result: CT.Type_Result
 }
 

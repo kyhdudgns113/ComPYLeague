@@ -53,6 +53,9 @@ export class PitcherInfo extends Document {
   name: string = ''
 
   @Prop({type: String, required: true})
+  pitcherHand!: CT.Type_PitcherHand
+
+  @Prop({type: String, required: true})
   pitcherType!: CT.Type_Pitcher
 
   @Prop({type: String, required: true})

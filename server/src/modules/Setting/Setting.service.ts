@@ -95,10 +95,10 @@ export class SettingService {
   
   async addPitcher(data: HTTP.HTTP_AddPitcher) {
     const where = '/setting/addPitcher'
-    const {name, pitcherType, teamName} = data
+    const {name, pitcherHand, pitcherType, teamName} = data
 
     try {
-      const dto: DTO.DTO_CreatePitcher = {name, pitcherType, teamName}
+      const dto: DTO.DTO_CreatePitcher = {name, pitcherHand, pitcherType, teamName}
       await this.pitcherDBService.createPitcherInfo(where, dto)
 
       const {pitcherArr} = await this.pitcherDBService.readPitcherInfoArr(where, pitcherType, teamName)

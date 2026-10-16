@@ -19,17 +19,18 @@ export class PitcherDBService {
   async createPitcherInfo(where: string, data: DTO.DTO_CreatePitcher) {
     where = where + '/createPitcherInfo'
 
-    const {name, pitcherType, teamName} = data
+    const {name, pitcherHand, pitcherType, teamName} = data
 
     try {
       // 1. 새로운 투수 DB 에 저장
-      const newPitcher = new this.pitcherInfoModel({name, pitcherType, teamName})
+      const newPitcher = new this.pitcherInfoModel({name, pitcherHand, pitcherType, teamName})
       const pitcherDB = await newPitcher.save()
       const pitcherOId = pitcherDB._id.toString()
 
       // 2. 리턴할 투수 정보 생성
       const pitcher: OT.PitcherType = {
         name,
+        pitcherHand,
         pitcherOId,
         pitcherType,
         teamName,
@@ -91,10 +92,10 @@ export class PitcherDBService {
         const pitcherDB = pitcherInfoArr.find(elem => elem._id.toString() === pitcherOId)
 
         if (pitcherDB) {
-          const {name, teamName, _id, pitcherType} = pitcherDB
+          const {name, teamName, _id, pitcherHand, pitcherType} = pitcherDB
           const pitcherOId = _id.toString()
           const ret: OT.PitcherType = {
-            name, pitcherOId, pitcherType, teamName
+            name, pitcherHand, pitcherOId, pitcherType, teamName
           }
           return ret
         }

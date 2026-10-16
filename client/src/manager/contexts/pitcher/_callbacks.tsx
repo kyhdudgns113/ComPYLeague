@@ -13,7 +13,7 @@ import * as U from '@util'
 type ContextType = {
   getPitcherMatrixAll: () => Promise<LT.APIReturnType>
 
-  addPitcher: (name: string, pitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
+  addPitcher: (name: string, pitcherHand: CT.Type_PitcherHand, pitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 
   movePitcherInArr: (movePitcher: OT.PitcherType, targetIdx: number, targetPitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 }
@@ -58,10 +58,11 @@ export const PitcherCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
 
   // POST AREA:
 
-  const addPitcher = useCallback(async (name: string, pitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => {
+  const addPitcher = useCallback(async (name: string, pitcherHand: CT.Type_PitcherHand, pitcherType: CT.Type_Pitcher, teamName: CT.Type_Team) => {
     const url = `/setting/addPitcher`
     const data: HTTP.HTTP_AddPitcher = {
       name,
+      pitcherHand,
       pitcherType,
       teamName,
     }

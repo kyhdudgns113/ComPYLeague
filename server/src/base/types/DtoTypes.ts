@@ -18,6 +18,7 @@ export type DTO_CreateGameInfo = {
 
 export type DTO_CreatePitcher = {
   name: string
+  pitcherHand: CT.Type_PitcherHand
   pitcherType: CT.Type_Pitcher
   teamName: CT.Type_Team
 }
