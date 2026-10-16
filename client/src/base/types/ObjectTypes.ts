@@ -19,6 +19,11 @@ export type GameInfoType = {
   SPName: string
 }
 
+export type PitchType = {
+  ball: CT.Type_Pitch
+  location: CT.Type_Location
+}
+
 export type PitcherType = {
   name: string
   pitcherOId: string // uniqueId, ObjectId
