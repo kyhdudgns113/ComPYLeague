@@ -1,8 +1,8 @@
 import {useCallback, useState} from 'react'
-import {useModalActions, useRecordActions} from '@redux'
+import {useModalActions, usePitcherSPArr, useRecordActions} from '@redux'
 
 import * as C from '@component'
-// import * as CT from '@commonType'
+import * as OT from '@objectType'
 import * as V from '@value'
 
 import type {FC} from 'react'
@@ -18,20 +18,26 @@ type AddGameModalProps = DivCommonProps & {
 
 export const AddGameModal: FC<AddGameModalProps> = ({arrLen, leagueNum, ...props}) => {
   const {closeModal} = useModalActions()
-
   const {setGameArr} = useRecordActions()
+
   const {addGame} = useRecordCallbacksContext()
+
+  const SPArr = usePitcherSPArr(V.MY_TEAM_IDX)
 
   const [SPName, setSPName] = useState<string>('')
   const [teamIdx, setTeamIdx] = useState<number | null>(null)
 
   const _submit = useCallback((arrLen: number, leagueNum: number, SPName: string, teamIdx: number | null) => {
+    if (SPName.length === 0 || SPName.split(' ').length === 0) {
+      alert('선발투수 이름을 입력해주세요')
+      return
+    }
     if (teamIdx === null) {
       alert('팀이 선택되지 않았어요')
       return
     }
-    if (SPName.length === 0 || SPName.split(' ').length === 0) {
-      alert('선발투수 이름을 입력해주세요')
+    if (teamIdx === V.MY_TEAM_IDX) {
+      alert('내 팀이랑 상대할 순 없어요')
       return
     }
 
@@ -50,11 +56,21 @@ export const AddGameModal: FC<AddGameModalProps> = ({arrLen, leagueNum, ...props
     })
   }, [])
 
-  const onChangeSPName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onClickModal = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
 
-    setSPName(e.currentTarget.value)
+    setSPName('')
+    setTeamIdx(null)
   }, [])
+
+  const onClickPitcher = useCallback(
+    (pitcher: OT.PitcherType) => (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+
+      setSPName(pitcher.name)
+    },
+    []
+  )
 
   const onClickSubmit = useCallback(
     (arrLen: number, leagueNum: number, SPName: string, teamIdx: number | null) => (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -91,14 +107,25 @@ export const AddGameModal: FC<AddGameModalProps> = ({arrLen, leagueNum, ...props
   )
 
   return (
-    <C.Modal className="AddGameModal" onClose={closeModal} onKeyDown={onKeyDown(arrLen, leagueNum, SPName, teamIdx)} {...props}>
+    <C.Modal
+      className="AddGameModal"
+      onClick={onClickModal}
+      onClose={closeModal}
+      onKeyDown={onKeyDown(arrLen, leagueNum, SPName, teamIdx)}
+      {...props}
+    >
       {/* 1. 타이틀 */}
       <p className="title_Modal">{`${arrLen} 번째 게임 추가`}</p>
 
       {/* 2. 입력행: 이름 */}
       <div className="inputRow_Modal inputRow_name">
-        <p className="name_Modal">선발 투수</p>
-        <input className="inputName_Modal" autoFocus={true} onChange={onChangeSPName} value={SPName} />
+        {SPArr.map((pitcher, pitcherIdx) => {
+          return (
+            <div className={`pitcherBlock_Modal ${SPName === pitcher.name && '_selected'}`} key={pitcherIdx} onClick={onClickPitcher(pitcher)}>
+              {pitcher.name}
+            </div>
+          )
+        })}
       </div>
 
       {/* 3. 입력행: 팀 1 */}
@@ -139,7 +166,7 @@ export const AddGameModal: FC<AddGameModalProps> = ({arrLen, leagueNum, ...props
         </div>
       </div>
 
-      {/* 3. 버튼 행 */}
+      {/* 5. 버튼 행 */}
       <div className="buttonRow_Modal">
         <button className="buttonSubmit_Modal" onClick={onClickSubmit(arrLen, leagueNum, SPName, teamIdx)}>
           추가
