@@ -41,11 +41,12 @@ export const Template: FC<TemplateProps> = ({...props}) => {
       <Footer />
 
       {/* 3. 모달 영역 */}
-      {modalType === 'AddPitcher' && modalPitcherType !== null && <M.AddPitcherModal pitcherType={modalPitcherType} />}
+      {modalType === 'AddGame' && modalLeagueNum !== null && <M.AddGameModal arrLen={gameArr.length} leagueNum={modalLeagueNum} />}
       {modalType === 'AddBatter' && modalBatterClass !== null && modalBatterTeamIdx !== null && (
         <M.AddBatterModal batterClass={modalBatterClass} teamIdx={modalBatterTeamIdx} />
       )}
-      {modalType === 'AddGame' && modalLeagueNum !== null && <M.AddGameModal arrLen={gameArr.length} leagueNum={modalLeagueNum} />}
+      {modalType === 'AddLeague' && <M.AddLeagueModal />}
+      {modalType === 'AddPitcher' && modalPitcherType !== null && <M.AddPitcherModal pitcherType={modalPitcherType} />}
     </div>
   )
 }

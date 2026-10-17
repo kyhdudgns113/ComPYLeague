@@ -40,11 +40,18 @@ export const ModalSlice = createSlice({
       state.modalType = "AddBatter"
       state.modalPitcherType = null
     },
-    setModalLeagueNum: (state, action: PayloadAction<{leagueNum: number | null}>) => {
+    setModalTypeAddGame: (state, action: PayloadAction<{leagueNum: number | null}>) => {
       state.modalBatterClass = null
       state.modalBatterTeamIdx = null
       state.modalLeagueNum = action.payload.leagueNum
       state.modalType = "AddGame"
+      state.modalPitcherType = null
+    },
+    setModalTypeAddLeague: (state) => {
+      state.modalBatterClass = null
+      state.modalBatterTeamIdx = null
+      state.modalLeagueNum = null
+      state.modalType = "AddLeague"
       state.modalPitcherType = null
     },
     setModalTypeAddPitcher: (state, action: PayloadAction<CT.Type_Pitcher>) => {

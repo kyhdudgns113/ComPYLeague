@@ -10,7 +10,7 @@ import * as OT from '@objectTye'
 export class RecordDBService {
   constructor(
     @InjectModel(GameInfo.name) private gameInfoModel: Model<GameInfo>,
-    @InjectModel(GameInfo.name) private leagueInfoModel: Model<LeagueInfo>,
+    @InjectModel(LeagueInfo.name) private leagueInfoModel: Model<LeagueInfo>,
   ) {}
 
   async createGameInfo(where: string, dto: DTO.DTO_CreateGameInfo) {
@@ -100,7 +100,7 @@ export class RecordDBService {
 
       const leagueArr: OT.LeagueInfoType[] = leagueArrDB.map(leagueInfo => {
         const ret: OT.LeagueInfoType = {
-          createdAt: leagueInfo.createdAt,
+          createdAtNum: leagueInfo.createdAt.valueOf(),
           description: leagueInfo.description,
           leagueNum: leagueInfo.leagueNum
         }

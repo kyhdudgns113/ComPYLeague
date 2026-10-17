@@ -1,0 +1,51 @@
+
+.PitchRecordPage {
+  .LeagueListTable {
+    border-collapse: collapse;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 4px;
+
+    user-select: none;
+
+    thead {
+      border-color: #000000;
+      border-style: solid;
+      border-width: 4px;
+
+      font-size: 18px;
+
+      th {
+        border-color: #000000;
+        border-style: solid;
+        border-width: 2px;
+
+        text-align: center;
+
+        &.leagueNum {
+          width: 90px;
+        }
+        &.createdAt {
+          width: 200px;
+        }
+        &.description {
+          width: 200px;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        border-color: #000000;
+        border-style: solid;
+        border-width: 2px;
+
+        text-align: center;
+
+        &.leagueNum {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

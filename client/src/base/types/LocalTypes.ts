@@ -12,7 +12,7 @@ export type LeagueNumType = number | null
 export type LefterTabType = "Setting" | "PitchRecord" | null
 export type ModalBatterTeamIdxType = number | null
 export type ModalBatterClassType = CT.Type_BatterClass | null
-export type ModalType = "AddBatter" | "AddPitcher" | "AddGame" | null // 투수 관련 작업 안하는데 투수타입이 설정되는걸 방지
+export type ModalType = "AddBatter" | "AddPitcher" | "AddGame" | "AddLeague" | null // 투수 관련 작업 안하는데 투수타입이 설정되는걸 방지
 export type ModalPitcherType = CT.Type_Pitcher | null
 
 export type PageTeamType = CT.Type_Team | ''

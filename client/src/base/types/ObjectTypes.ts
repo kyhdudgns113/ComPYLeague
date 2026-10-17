@@ -20,7 +20,7 @@ export type GameInfoType = {
 }
 
 export type LeagueInfoType = {
-  createdAt: Date // 서버가 전해줄때는 Date 가 아닌 number 로 전해준다
+  createdAtNum: number // 서버가 전해줄때는 Date 가 아닌 number 로 전해준다
   description: string
   leagueNum: number
 }

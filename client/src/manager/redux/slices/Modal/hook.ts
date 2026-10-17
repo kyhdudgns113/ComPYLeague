@@ -11,7 +11,8 @@ export const useModalActions = () => {
   return {
     closeModal: () => dispatch(ModalSlice.actions.resetModalType()),
     openAddBatterModal: (batterClass: CT.Type_BatterClass, teamIdx: number) => dispatch(ModalSlice.actions.setModalTypeAddBatter({batterClass, teamIdx})),
-    openAddGameModal: (leagueNum: number) => dispatch(ModalSlice.actions.setModalLeagueNum({leagueNum})),
+    openAddGameModal: (leagueNum: number) => dispatch(ModalSlice.actions.setModalTypeAddGame({leagueNum})),
+    openAddLeagueModal: () => dispatch(ModalSlice.actions.setModalTypeAddLeague()),
     openAddPitcherModal: (pitcherType: CT.Type_Pitcher) => dispatch(ModalSlice.actions.setModalTypeAddPitcher(pitcherType)),
   }
 }

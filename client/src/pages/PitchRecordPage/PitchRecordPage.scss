@@ -23,7 +23,13 @@
       height: 100%;
       margin-top: 24px;
       
-      width: fit-content;      
+      width: fit-content;
+
+      .leagueList_Page {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
 
       .gameList_Page {
         display: flex;
