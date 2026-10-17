@@ -19,13 +19,13 @@ export const GameRecordTable: FC<GameRecordTableProps> = ({...props}) => {
           <th className={`th_order`}>{'#'}</th>
           <th className={`th_name`}>이름</th>
           <th className={`th_hand`}>손</th>
-          <th className={`th_pressure`}>위압</th>
+          <th className={`th_pressure`}>위</th>
 
           {Array.from({length: ORDER_CNT}, () => null).map((_null, idx) => {
             return (
               <Fragment key={idx}>
                 <th className={`th_pitch`}>투구</th>
-                <th className={`th_result`}>결과</th>
+                <th className={`th_result`}>결</th>
               </Fragment>
             )
           })}

@@ -41,18 +41,18 @@
             width: 100px;
           }
           &.th_hand {
-            width: 30px;
+            width: 28px;
           }
           &.th_pressure {
           border-right-width: 4px;
-          width: 44px;
+          width: 28px;
           }
           &.th_pitch {
-            width: 140px;
+            width: 160px;
           }
           &.th_result {
             border-right-width: 4px;
-            width: 44px;
+            width: 32px;
           }
         }
       }
@@ -76,6 +76,8 @@
           border-left-width: 0px;
           border-right-width: 2px;
           border-top-width: 0px;
+
+          height: 24px;
 
           text-align: center;
 
