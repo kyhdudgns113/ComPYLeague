@@ -1,7 +1,7 @@
 import {createContext, useContext, useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 
-import {useBaseActions, useLefterActions} from '@redux'
+import {useBaseActions, useLefterActions, useRecordActions} from '@redux'
 
 import type {FC, PropsWithChildren} from 'react'
 
@@ -16,6 +16,7 @@ export const useURLEffectsContext = () => useContext(URLEffectsContext)
 
 export const URLEffectsProvider: FC<PropsWithChildren> = ({children}) => {
   const {resetPageTeamName, setPageTeamName} = useBaseActions()
+  const {resetLeagueNum, setLeagueNum} = useRecordActions()
 
   const location = useLocation()
 
@@ -54,6 +55,20 @@ export const URLEffectsProvider: FC<PropsWithChildren> = ({children}) => {
       } // ::
       else {
         resetPageTeamName()
+      }
+    }
+  }, [location])
+
+  // 자동 갱신 : leagueNum 구하기
+  useEffect(() => {
+    const pathParts = location.pathname.split('/pitchRecord/')
+    if (pathParts.length > 1) {
+      const leagueNum = parseInt(pathParts[1])
+      if (0 < leagueNum) {
+        setLeagueNum(leagueNum)
+      } // ::
+      else {
+        resetLeagueNum()
       }
     }
   }, [location])

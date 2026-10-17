@@ -24,3 +24,20 @@ export const useRecordActions = () => {
   }
 }
 
+// export const usePitcherCPArr = (teamIdx: number) => useAppSelector(state => state.record.CPMatrix[teamIdx])
+
+
+export const useGameArr = (leagueNum: number) => {
+  const {gameMatrix, leagueArr} = useAppSelector(state => state.record)
+
+  const isExist = leagueArr.filter(league => league.leagueNum === leagueNum).length > 0
+
+  if (!isExist) {
+    alert(`[RecordHook] [경고] leagueArr 에 ${leagueNum} 이 없어요`)
+    return []
+  }
+
+  const gameArr = gameMatrix[leagueNum] || []
+
+  return gameArr
+}

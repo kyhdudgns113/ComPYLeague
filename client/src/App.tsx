@@ -13,7 +13,13 @@ function App() {
       <Route path="/main/*" element={<Template />}>
         <Route index element={<P.IntroPage />} />
         <Route path="pitchRecord" element={<P.PitchRecordPage />} />
-        <Route path="setting" element={<P.SettingPage />} />
+        <Route path="pitchRecord/*">
+          <Route index element={<P.PitchRecordPage />} />
+          <Route path=":leagueNum/*">
+            <Route index element={<P.PitchRecordPage />} />
+            <Route path=":gameNum" element={<P.PitchRecordPage />} />
+          </Route>
+        </Route>
         <Route path="setting/*">
           <Route index element={<P.SettingPage />} />
           <Route path=":teamIdx" element={<P.TeamPage />} />

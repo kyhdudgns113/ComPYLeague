@@ -64,7 +64,10 @@ export const RecordSlice = createSlice({
       
       // 주의사항: leagueNum 은 1부터 시작한다. 가장 최근 leagueNum 은 leagueArr.length 이다.
       if (leagueNum !== null && (leagueNum <= 0 || leagueNum > leagueArr.length)) {
-        alert(`[RecordSlice] leagueNum 이 이상합니다. ${leagueNum}`)
+        /**
+         * 이 경고문구 띄우면 괜히 번거로워지기만 한다
+         */
+        // alert(`[RecordSlice] leagueNum 이 이상합니다. ${leagueNum}`)
         state.leagueNum = null
       }
       state.leagueNum = leagueNum

@@ -10,7 +10,9 @@ import * as R from '../../rows'
 type GameListTableProps = TableCommonProps
 
 export const GameListTable: FC<GameListTableProps> = ({...props}) => {
-  const {gameArr} = useRecordStates()
+  const {gameMatrix, leagueNum} = useRecordStates()
+
+  const gameArr = gameMatrix[leagueNum || 0] || []
 
   return (
     <table className={`GameListTable`} {...props}>

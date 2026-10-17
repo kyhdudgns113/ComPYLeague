@@ -41,12 +41,17 @@ export const AddGameModal: FC<AddGameModalProps> = ({arrLen, leagueNum, ...props
       return
     }
 
+    if (!leagueNum) {
+      alert(`leagueNum 이 잘못됬어요 ${leagueNum}`)
+      return
+    }
+
     addGame(arrLen, leagueNum, SPName, V.TEAM_NAME[teamIdx]).then(res => {
       const {isSuccess} = res
 
       if (isSuccess) {
         const {gameArr} = res
-        setGameArr(gameArr)
+        setGameArr(gameArr, leagueNum)
         closeModal()
       } // ::
       else {

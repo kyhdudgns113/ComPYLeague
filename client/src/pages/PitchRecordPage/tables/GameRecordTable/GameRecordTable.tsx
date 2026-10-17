@@ -1,4 +1,4 @@
-import {Fragment} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 
 import type {FC} from 'react'
 import type {TableCommonProps} from '@prop'
@@ -6,11 +6,25 @@ import type {TableCommonProps} from '@prop'
 import * as V from '@value'
 
 import './GameRecordTable.scss'
+import {useRecordStates} from '@redux'
 
 type GameRecordTableProps = TableCommonProps
 
 export const GameRecordTable: FC<GameRecordTableProps> = ({...props}) => {
+  const {gameNum} = useRecordStates()
+
+  const [isHidden, setIsHidden] = useState<boolean>(false)
+
   const ORDER_CNT = V.SETTING_ORDER_CNT
+
+  useEffect(() => {
+    if (gameNum === null) {
+      setIsHidden(true)
+    } // ::
+    else {
+      setIsHidden(false)
+    }
+  }, [gameNum])
 
   return (
     <table className={`GameRecordTable`} {...props}>
@@ -32,7 +46,7 @@ export const GameRecordTable: FC<GameRecordTableProps> = ({...props}) => {
         </tr>
       </thead>
 
-      <tbody>
+      <tbody hidden={isHidden}>
         <tr>
           <td className={`td_order`}>1</td>
           <td className={`td_name`}>데스파이네'93</td>

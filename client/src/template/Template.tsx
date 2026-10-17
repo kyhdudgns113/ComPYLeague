@@ -18,15 +18,28 @@ type TemplateProps = DivCommonProps
 
 export const Template: FC<TemplateProps> = ({...props}) => {
   const {modalBatterClass, modalBatterTeamIdx, modalLeagueNum, modalPitcherType, modalType} = useModalStates()
-  const {gameArr} = useRecordStates()
+  const {gameMatrix} = useRecordStates()
+
+  const gameArr = gameMatrix[modalLeagueNum || 0] || []
 
   const onClickTemplate = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     // 템플릿 클릭시 이벤트 작성
   }, [])
 
+  const onKeyDownTemplate = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+
+      if (e.key === 'Escape') {
+        //
+      }
+    },
+    [gameMatrix]
+  )
+
   return (
-    <div className={`Template `} onClick={onClickTemplate} {...props}>
+    <div className={`Template `} onClick={onClickTemplate} onKeyDown={onKeyDownTemplate} tabIndex={0} {...props}>
       {/* 1. 헤더 */}
       <Header />
 
