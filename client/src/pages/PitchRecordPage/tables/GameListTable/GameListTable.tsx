@@ -16,8 +16,8 @@ export const GameListTable: FC<GameListTableProps> = ({...props}) => {
     <table className={`GameListTable`} {...props}>
       <thead>
         <tr>
-          <th className="th_number">번호</th>
-          <th className="th_teamName">상대팀</th>
+          <th className="th_number">{'#'}</th>
+          <th className="th_teamName">상대</th>
           <th className="th_pitcherName">선발 투수</th>
           <th className="th_button">O</th>
         </tr>

@@ -1,76 +1,89 @@
 @use '../../../../base/styles/values.scss' as v;
 
 .PitchRecordPage {
-  table.GameRecordTable {
+  .GameRecordTable {
     border-collapse: collapse;
-    border-color: #000000;
+    border-color: 000000;
     border-style: solid;
     border-width: 4px;
-    
+
+    cursor: default;
+
+    height: fit-content;
+
+    width: fit-content;
+
     thead {
-      border-color: #000000;
-      border-style: solid;
-      
-      border-bottom-width: 1px;
-
-      th {
+      tr {
         border-color: #000000;
         border-style: solid;
-        border-bottom-width: 4px;
+        border-bottom-width: 6px;
         border-left-width: 0px;
-        border-right-width: 2px;
-        border-top-width: 0px;
-
-        font-size: 18px;
-  
-        padding-top: 2px;
-        padding-bottom: 2px;
-  
-        &.th_number {
-          width: 24px;
-        }
-        &.th_name {
-          width: 120px;
-        }
-        &.th_class {
-          width: 32px;
-        }
-        &.th_pressure {
-          border-right-width: 4px;
-          width: 32px;
-        }
-        &.th_pitch {
-          // border-right-width: 1px;
-          width: 160px;
-        }
-        &.th_result {
-          width: 40px;
-        }
-      }
-
-    }
-
-    tbody {
-
-      td {
-        border-color: #000000;
-        border-style: solid;
-        
-        border-bottom-width: 0px;
-        border-left-width: 0px;
-        border-right-width: 2px;
+        border-right-width: 0px;
         border-top-width: 0px;
 
         font-size: 16px;
 
-        text-align: center;
+        th {
+          border-color: #000000;
+          border-style: solid;
+          border-bottom-width: 0px;
+          border-left-width: 0px;
+          border-right-width: 2px;
+          border-top-width: 0px;
 
-        &.td_pressure {
+          height: 28px;
+
+          &.th_order {
+            width: 28px;
+          }
+          &.th_name {
+            width: 100px;
+          }
+          &.th_hand {
+            width: 30px;
+          }
+          &.th_pressure {
           border-right-width: 4px;
-          width: 32px;
+          width: 44px;
+          }
+          &.th_pitch {
+            width: 140px;
+          }
+          &.th_result {
+            border-right-width: 4px;
+            width: 44px;
+          }
         }
       }
     }
+    
+    tbody {
+      tr {
+        border-color: #000000;
+        border-style: solid;
+        border-bottom-width: 2px;
+        border-left-width: 0px;
+        border-right-width: 0px;
+        border-top-width: 0px;
 
+        font-size: 14px;
+
+        td {
+          border-color: #000000;
+          border-style: solid;
+          border-bottom-width: 0px;
+          border-left-width: 0px;
+          border-right-width: 2px;
+          border-top-width: 0px;
+
+          text-align: center;
+
+          &.td_pressure, .td_result {
+            border-right-width: 4px;
+          }
+        }
+      }
+    }
   }
 }
