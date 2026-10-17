@@ -23,6 +23,19 @@ export class GameInfo extends Document {
   SPName!: string
 }
 
+@Schema()
+export class LeagueInfo extends Document {
+  @Prop({type: Date, default: new Date()})
+  createdAt!: Date
+
+  @Prop({type: String, default: ''})
+  description: string = ''
+
+  @Prop({type: Number, required: true, unique: true})
+  leagueNum!: number
+}
+
 export const GameInfoSchema = SchemaFactory.createForClass(GameInfo)
+export const LeagueInfoSchema = SchemaFactory.createForClass(LeagueInfo)
 
 GameInfoSchema.index({gameNum: 1, leagueNum: 1}, {unique: true})

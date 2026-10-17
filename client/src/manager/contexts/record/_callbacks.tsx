@@ -10,13 +10,13 @@ import * as U from '@util'
 
 // prettier-ignore
 type ContextType = {
-  readGameArr: (leagueNum: number) => Promise<LT.APIReturnType>,
+  readGameMatrix: () => Promise<LT.APIReturnType>,
 
   addGame: (arrLen: number, leagueNum: number, SPName: string, teamName: CT.Type_Team) => Promise<LT.APIReturnType>
 }
 // prettier-ignore
 export const RecordCallbacksContext = createContext<ContextType>({
-  readGameArr: () => Promise.resolve({isSuccess: false, errMsg: 'readGameArr is not initialized!!'}),
+  readGameMatrix: () => Promise.resolve({isSuccess: false, errMsg: 'readGameArr is not initialized!!'}),
 
   addGame: () => Promise.resolve({isSuccess: false, errMsg: 'addGame is not initialized!!'})  
 })
@@ -25,21 +25,24 @@ export const useRecordCallbacksContext = () => useContext(RecordCallbacksContext
 
 export const RecordCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
   // GET AREA:
-  const readGameArr = useCallback(async (leagueNum: number) => {
-    const url = `/record/readGameArr/${leagueNum}`
+  const readGameMatrix = useCallback(async () => {
+    /**
+     * 게임 행렬과 리그 목록을 한번에 불러온다.
+     */
+    const url = `/record/readGameMatrix`
     return F.get(url, null)
       .then(res => res.json())
       .then(res => {
         const {ok, body, statusCode, gkdErrMsg, message} = res
 
         if (ok) {
-          const {gameArr} = body
+          const {gameMatrix, leagueArr} = body
 
-          if (!gameArr) {
-            return {isSuccess: false, errMsg: 'gameArr is falsy'} as LT.APIReturnType
+          if (!leagueArr || !gameMatrix) {
+            return {isSuccess: false, errMsg: `Some arr is falsy.\ngameMatrix: ${gameMatrix}\nleagueArr: ${leagueArr}`} as LT.APIReturnType
           }
 
-          return {isSuccess: true, gameArr} as LT.APIReturnType
+          return {isSuccess: true, gameMatrix, leagueArr} as LT.APIReturnType
         } // ::
         else {
           U.alertErrMsg(url, statusCode, gkdErrMsg, message)
@@ -91,7 +94,7 @@ export const RecordCallbacksProvider: FC<PropsWithChildren> = ({children}) => {
 
   // prettier-ignore
   const value: ContextType = {
-    readGameArr,
+    readGameMatrix,
     
     addGame
   }

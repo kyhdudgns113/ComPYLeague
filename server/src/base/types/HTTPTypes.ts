@@ -16,6 +16,11 @@ export type HTTP_AddGame = {
   teamName: CT.Type_Team
 }
 
+export type HTTP_AddLeague = {
+  description: string
+  leagueNum: number
+}
+
 export type HTTP_AddPitcher = {
   name: string
   pitcherHand: CT.Type_PitcherHand

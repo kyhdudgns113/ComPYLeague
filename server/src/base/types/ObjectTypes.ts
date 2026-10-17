@@ -19,6 +19,12 @@ export type GameInfoType = {
   SPName: string
 }
 
+export type LeagueInfoType = {
+  createdAt: Date // 서버가 전해줄때는 Date 가 아닌 number 로 전해준다
+  description: string
+  leagueNum: number
+}
+
 export type PitchType = {
   ball: CT.Type_Pitch
   location: CT.Type_Location

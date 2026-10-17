@@ -11,7 +11,6 @@ export const useBaseActions = () => {
   return {
     resetPageTeamName: () => dispatch(BaseSlice.actions.setPageTeamName('')),
 
-    setLeagueNum: (leagueNum: number) => dispatch(BaseSlice.actions.setLeagueNum(leagueNum)),
     setPageTeamName: (teamName: CT.Type_Team) => dispatch(BaseSlice.actions.setPageTeamName(teamName))
   }
 }

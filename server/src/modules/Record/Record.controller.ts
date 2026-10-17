@@ -13,9 +13,15 @@ export class RecordController {
     return {ok, body, gkdErrMsg, statusCode}
   }
 
-  @Get(`/readGameArr/:leagueNum`)
-  async readGameArr(@Param('leagueNum') leagueNum: number) {
-    const {ok, body, gkdErrMsg, statusCode} = await this.recordService.readGameArr(leagueNum)
+  @Post('/addLeague')
+  async addLeague(@Body() data: HTTP.HTTP_AddLeague) {
+    const {ok, body, gkdErrMsg, statusCode} = await this.recordService.addLeague(data)
+    return {ok, body, gkdErrMsg, statusCode}
+  }
+
+  @Get(`/readGameMatrix`)
+  async readGameMatrix() {
+    const {ok, body, gkdErrMsg, statusCode} = await this.recordService.readGameMatrix()
     return {ok, body, gkdErrMsg, statusCode}
   }
 }

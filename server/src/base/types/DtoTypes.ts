@@ -16,6 +16,11 @@ export type DTO_CreateGameInfo = {
   SPName: string
 }
 
+export type DTO_CreateLeagueInfo = {
+  description: string
+  leagueNum: number
+}
+
 export type DTO_CreatePitcher = {
   name: string
   pitcherHand: CT.Type_PitcherHand
