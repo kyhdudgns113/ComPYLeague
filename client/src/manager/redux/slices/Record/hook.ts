@@ -14,6 +14,7 @@ export const useRecordActions = () => {
     clearGameNum: () => dispatch(RecordSlice.actions.setGameNum(null)),
 
     resetLeagueNum: () => dispatch(RecordSlice.actions.setLeagueNum(null)),
+    resetRecordArr: () => dispatch(RecordSlice.actions.setRecordArr([])),
 
     setGameArr: (gameArr: OT.GameInfoType[], leagueNum: number) => dispatch(RecordSlice.actions.setGameArr({gameArr, leagueNum})),
     setGameMatrix: (gameMatrix: OT.GameInfoType[][]) => dispatch(RecordSlice.actions.setGameMatrix(gameMatrix)),
@@ -21,6 +22,10 @@ export const useRecordActions = () => {
 
     setLeagueArr: (leagueArr: OT.LeagueInfoType[]) => dispatch(RecordSlice.actions.setLeagueArr(leagueArr)),
     setLeagueNum: (leagueNum: number) => dispatch(RecordSlice.actions.setLeagueNum(leagueNum)),
+
+    setRecordArr: (recordArr: OT.RecordElementType[]) => dispatch(RecordSlice.actions.setRecordArr(recordArr)),
+
+    updateRecordElem: (idx: number, record: OT.RecordElementType) => dispatch(RecordSlice.actions.updateRecordElem({idx, record}))
   }
 }
 

@@ -11,6 +11,8 @@ interface RecordState {
 
   leagueArr: OT.LeagueInfoType[]
   leagueNum: LT.LeagueNumType
+
+  recordArr: OT.RecordElementType[] // 일차원 배열로 넣고 9개씩 끊는다.
 }
 
 const initialState: RecordState = {
@@ -18,7 +20,9 @@ const initialState: RecordState = {
   gameMatrix: [],
 
   leagueArr: [],
-  leagueNum: null // 1부터 시작한다
+  leagueNum: null, // 1부터 시작한다
+
+  recordArr: []
 }
 
 export const RecordSlice = createSlice({
@@ -34,6 +38,9 @@ export const RecordSlice = createSlice({
       const {gameRow, leagueNum} = action.payload
 
       state.gameMatrix[leagueNum] = [gameRow, ...state.gameMatrix[leagueNum]]
+    },
+    addRecord: (state, action: PayloadAction<OT.RecordElementType>) => {
+      state.recordArr.push(action.payload)
     },
 
     setGameArr: (state, action: PayloadAction<{gameArr: OT.GameInfoType[], leagueNum: number}>) => {
@@ -71,6 +78,20 @@ export const RecordSlice = createSlice({
         state.leagueNum = null
       }
       state.leagueNum = leagueNum
+    },
+
+    setRecordArr: (state, action: PayloadAction<OT.RecordElementType[]>) => {
+      state.recordArr = action.payload
+    },
+
+    updateRecordElem: (state, action: PayloadAction<{idx: number, record: OT.RecordElementType}>) => {
+      const {idx, record} = action.payload
+
+      if (idx >= state.recordArr.length) {
+        alert(`[RecordSlice] 기록 배열의 길이에 비해 인덱스가 너무 커요.\narrLen:${state.recordArr.length}\nidx:${idx}`)
+        return
+      }
+      state.recordArr[idx] = record
     }
   }
 })
